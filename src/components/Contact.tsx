@@ -10,8 +10,6 @@ import {
   Send,
   CheckCircle2,
   AlertCircle,
-  MapPin,
-  Clock,
   Sparkles,
   ArrowUpRight,
   ChevronUp,
@@ -145,7 +143,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative w-full bg-[#fafaf9] pt-12 pb-16 sm:pt-16 sm:pb-20 lg:pt-24 lg:pb-28 px-3.5 sm:px-8 md:px-12 lg:px-16 xl:px-20 scroll-mt-20 border-t border-zinc-200/60 overflow-hidden"
+      className="relative w-full bg-[#fafaf9] pt-12 pb-16 sm:pt-16 sm:pb-20 lg:pt-12 lg:pb-28 px-3.5 sm:px-8 md:px-12 lg:px-16 xl:px-20 scroll-mt-20 border-t border-zinc-200/60 overflow-hidden"
     >
       {/* Background Subtle Ambient Warm Radial Glows */}
       <div className="absolute inset-0 pointer-events-none select-none bg-[radial-gradient(circle_at_bottom_left,rgba(255,237,213,0.35),transparent_55%),radial-gradient(circle_at_top_right,rgba(22,51,39,0.04),transparent_50%)]" />
@@ -223,89 +221,7 @@ export default function Contact() {
               Have an innovative concept to bring to life, a high-impact engineering role, or a potential collaboration? Send a note and let&apos;s start the conversation.
             </motion.p>
 
-            {/* Availability Status Capsule */}
-            <motion.div
-              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{
-                duration: shouldReduceMotion ? 0.25 : 0.5,
-                delay: shouldReduceMotion ? 0 : 0.4,
-                ease: LUXURY_EASE,
-              }}
-              className="mb-6 sm:mb-8 inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-emerald-50/90 border border-emerald-200/80 shadow-xs"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-              </span>
-              <span className="text-xs font-semibold text-emerald-800 font-sans tracking-wide">
-                Available for New Projects & Opportunities
-              </span>
-            </motion.div>
 
-            {/* Editorial Contact Detail Cards */}
-            <div className="w-full flex flex-col gap-3 sm:gap-3.5">
-              {/* Card 1: Direct Location */}
-              <motion.div
-                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{
-                  duration: shouldReduceMotion ? 0.25 : 0.5,
-                  delay: shouldReduceMotion ? 0 : 0.44,
-                  ease: LUXURY_EASE,
-                }}
-                className="glass-panel p-3.5 sm:p-4 rounded-xl flex items-center justify-between group"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-orange-50 border border-orange-200/60 flex items-center justify-center text-[#ea580c] shrink-0">
-                    <MapPin className="w-4 h-4 sm:w-5 sm:h-5" />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-[11px] uppercase tracking-wider text-zinc-400 font-semibold font-sans">
-                      Based In
-                    </span>
-                    <span className="text-xs sm:text-sm font-bold text-zinc-900 font-sans">
-                      Tamil Nadu, India
-                    </span>
-                  </div>
-                </div>
-                <span className="text-[11px] font-medium text-zinc-500 font-sans px-2.5 py-1 rounded-full bg-zinc-100">
-                  Remote Worldwide
-                </span>
-              </motion.div>
-
-              {/* Card 2: Quick Response Time */}
-              <motion.div
-                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{
-                  duration: shouldReduceMotion ? 0.25 : 0.5,
-                  delay: shouldReduceMotion ? 0 : 0.48,
-                  ease: LUXURY_EASE,
-                }}
-                className="glass-panel p-3.5 sm:p-4 rounded-xl flex items-center justify-between group"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-[#163327]/5 border border-[#163327]/15 flex items-center justify-center text-[#163327] shrink-0">
-                    <Clock className="w-4 h-4 sm:w-5 sm:h-5" />
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-[11px] uppercase tracking-wider text-zinc-400 font-semibold font-sans">
-                      Response Speed
-                    </span>
-                    <span className="text-xs sm:text-sm font-bold text-zinc-900 font-sans">
-                      Within 24 Hours
-                    </span>
-                  </div>
-                </div>
-                <span className="text-[11px] font-medium text-emerald-700 font-sans px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-100">
-                  Active Daily
-                </span>
-              </motion.div>
-            </div>
           </div>
 
           {/* RIGHT COLUMN: Luxury Editorial Contact Form Card */}
@@ -462,18 +378,14 @@ export default function Contact() {
                   </div>
 
                   {/* Form Submission Action */}
-                  <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
-                    <span className="text-[11px] text-zinc-400 font-sans order-2 sm:order-1">
-                      🔒 Secured with EmailJS browser protocol
-                    </span>
-
+                  <div className="pt-2 flex items-center justify-end">
                     <motion.button
                       type="submit"
                       disabled={status === "submitting"}
                       whileHover={status === "submitting" ? undefined : { scale: 1.02, y: -2 }}
                       whileTap={status === "submitting" ? undefined : { scale: 0.98 }}
                       transition={{ duration: 0.2, ease: "easeOut" }}
-                      className={`inline-flex items-center justify-center px-6 sm:px-7 py-3 rounded-full text-xs sm:text-sm font-semibold text-white transition-all duration-300 ease-out font-sans order-1 sm:order-2 cursor-pointer shadow-[0_1px_2px_rgba(0,0,0,0.04),0_6px_18px_rgba(234,88,12,0.22)] hover:shadow-[0_3px_6px_rgba(0,0,0,0.05),0_12px_24px_rgba(234,88,12,0.30)] ${status === "submitting"
+                      className={`w-full sm:w-auto inline-flex items-center justify-center px-6 sm:px-7 py-3 rounded-full text-xs sm:text-sm font-semibold text-white transition-all duration-300 ease-out font-sans cursor-pointer shadow-[0_1px_2px_rgba(0,0,0,0.04),0_6px_18px_rgba(234,88,12,0.22)] hover:shadow-[0_3px_6px_rgba(0,0,0,0.05),0_12px_24px_rgba(234,88,12,0.30)] ${status === "submitting"
                         ? "bg-zinc-400 cursor-not-allowed"
                         : "bg-gradient-to-r from-[#ff6a00] to-[#ea580c] border border-orange-400/40 hover:border-orange-300/60"
                         }`}

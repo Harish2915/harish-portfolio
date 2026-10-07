@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { GraduationCap, Calendar, Building2, Award, Sparkles, BookOpen } from "lucide-react";
+import { GraduationCap, Calendar, Building2, Sparkles, BookOpen } from "lucide-react";
 
 const LUXURY_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -283,14 +283,7 @@ export default function Education() {
                         </div>
 
                         {/* Score / Grade Value Section */}
-                        <div className="pt-3 border-t border-zinc-100 flex items-center justify-between flex-wrap gap-2">
-                          <div className="flex items-center gap-2">
-                            <Award className="w-4 h-4 text-zinc-400" />
-                            <span className="text-xs font-mono font-medium text-zinc-500">
-                              {item.scoreLabel}:
-                            </span>
-                          </div>
-
+                        <div className="pt-3 border-t border-zinc-100 flex items-center justify-end">
                           <div
                             className={`inline-flex items-center px-3 py-1 rounded-full text-xs sm:text-sm font-mono font-bold ${item.isHighest
                               ? "bg-orange-500/10 text-[#ea580c] border border-orange-500/30 shadow-[0_1px_4px_rgba(234,88,12,0.15)]"

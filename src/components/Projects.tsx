@@ -117,7 +117,7 @@ const PROJECTS: ProjectItem[] = [
     modalImages: [
       "/projects/anvesha2.png",
       "/projects/anvesha3.png",
-      "/projects/anvesha4.png",
+      "/projects/anvesha4.jpeg",
     ],
 
     duration: "2026",
