@@ -209,19 +209,31 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.4, ease: LUXURY_EASE }}
-              className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-1 no-scrollbar select-none shrink-0"
+              className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-3.5 pt-0.5 no-scrollbar select-none shrink-0"
             >
               {skillCategories.map((cat) => (
                 <button
                   key={cat.id}
                   type="button"
                   onClick={() => setActiveCategory(cat.id)}
-                  className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 whitespace-nowrap cursor-pointer border ${activeCategory === cat.id
+                  className={`relative px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 whitespace-nowrap cursor-pointer border ${activeCategory === cat.id
                       ? "bg-[#163327] text-white border-[#163327] shadow-[0_2px_8px_rgba(22,51,39,0.25)]"
                       : "bg-white text-zinc-600 hover:text-zinc-950 border-zinc-200/90 hover:border-zinc-300 shadow-[0_1px_4px_rgba(0,0,0,0.03)]"
                     }`}
                 >
-                  {cat.name} ({cat.count})
+                  <span>
+                    {cat.name} ({cat.count})
+                  </span>
+                  {activeCategory === cat.id && (
+                    <motion.span
+                      layoutId="activeSkillCategoryIndicator"
+                      className="absolute -bottom-[9px] left-[20%] right-[20%] h-[3px] bg-[#ea580c] rounded-full shadow-[0_2px_8px_rgba(234,88,12,0.45),0_0_4px_rgba(234,88,12,0.3)] pointer-events-none"
+                      transition={{
+                        duration: shouldReduceMotion ? 0 : 0.4,
+                        ease: LUXURY_EASE,
+                      }}
+                    />
+                  )}
                 </button>
               ))}
             </motion.div>
