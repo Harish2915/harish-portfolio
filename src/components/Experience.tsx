@@ -33,7 +33,7 @@ const EXPERIENCES: ExperienceItem[] = [
       "Contributed to debugging, testing, and deployment workflows, improving application reliability and performance.",
     ],
     technologies: ["FastAPI", "MySQL", "React.js", "REST APIs"],
-    isCurrentOrRecent: true,
+    isCurrentOrRecent: false,
   },
   {
     id: "ksv-technologies",
@@ -41,7 +41,13 @@ const EXPERIENCES: ExperienceItem[] = [
     role: "Flutter & Web Developer",
     company: "KSV Technologies",
     employmentType: "Developer",
-    duration: "July 2025 – Sep 2025",
+    duration: "July 2026 – Sep 2026",
+    responsibilities: [
+      "Developed responsive web and mobile application interfaces using Flutter and modern web technologies.",
+      "Implemented reusable UI components and responsive layouts to deliver consistent user experiences across different screen sizes.",
+      "Worked on application debugging, testing, and performance improvements to ensure reliable and user-friendly applications.",
+    ],
+    technologies: ["Flutter", "Dart", "Next.js", "Node.js", "Firebase", "Supabase", "PostgreSQL", "Google Auth"],
     isCurrentOrRecent: false,
   },
 ];
@@ -52,7 +58,7 @@ export default function Experience() {
   return (
     <section
       id="experience"
-      className="relative w-full bg-white pt-8 pb-14 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24 px-3.5 sm:px-8 md:px-12 lg:px-16 xl:px-20 overflow-hidden scroll-mt-20"
+      className="relative w-full bg-white pt-8 pb-28 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24 px-3.5 sm:px-8 md:px-12 lg:px-16 xl:px-20 overflow-x-clip scroll-mt-20"
     >
       {/* Background subtle warm radial glow matching portfolio aesthetic */}
       <div className="absolute inset-0 pointer-events-none select-none bg-[radial-gradient(circle_at_top_right,rgba(255,237,213,0.30),transparent_55%)]" />
@@ -157,6 +163,9 @@ export default function Experience() {
 
               <div className="flex flex-col gap-6 sm:gap-8">
                 {EXPERIENCES.map((exp, idx) => {
+                  const mobileTopOffset = 84 + idx * 20;
+                  const mobileZIndex = 10 + idx * 10;
+
                   return (
                     <motion.div
                       key={exp.id}
@@ -168,13 +177,19 @@ export default function Experience() {
                         delay: shouldReduceMotion ? 0 : 0.15 * idx,
                         ease: LUXURY_EASE,
                       }}
-                      className="relative group"
+                      style={
+                        {
+                          "--mobile-top": `${mobileTopOffset}px`,
+                          "--mobile-z": `${mobileZIndex}`,
+                        } as React.CSSProperties
+                      }
+                      className="sticky sm:relative top-[var(--mobile-top)] sm:top-auto z-[var(--mobile-z)] sm:z-auto group transition-[top,box-shadow] duration-300"
                     >
                       {/* Circular Timeline Indicator Marker */}
                       <div
                         className={`absolute -left-6 sm:-left-8 md:-left-10 top-6 -translate-x-1/2 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-white flex items-center justify-center z-10 transition-transform duration-300 group-hover:scale-110 ${exp.isCurrentOrRecent
-                            ? "border-2 border-[#ea580c] shadow-[0_0_0_3px_rgba(234,88,12,0.20)]"
-                            : "border-2 border-[#163327] shadow-[0_0_0_3px_rgba(22,51,39,0.12)]"
+                          ? "border-2 border-[#ea580c] shadow-[0_0_0_3px_rgba(234,88,12,0.20)]"
+                          : "border-2 border-[#163327] shadow-[0_0_0_3px_rgba(22,51,39,0.12)]"
                           }`}
                         aria-hidden="true"
                       >
@@ -185,7 +200,7 @@ export default function Experience() {
                       </div>
 
                       {/* Editorial Experience Card Panel */}
-                      <div className="relative rounded-[22px] sm:rounded-[26px] bg-white border border-zinc-200/80 hover:border-zinc-300 p-5 sm:p-7 md:p-8 shadow-[0_1px_3px_rgba(0,0,0,0.03),0_8px_24px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.04),0_18px_40px_rgba(0,0,0,0.07)] hover:-translate-y-0.5 transition-all duration-300 ease-out">
+                      <div className="relative rounded-[22px] sm:rounded-[26px] bg-white border border-zinc-200/90 sm:border-zinc-200/80 hover:border-zinc-300 p-5 sm:p-7 md:p-8 shadow-[0_-3px_18px_rgba(0,0,0,0.06),0_8px_24px_rgba(0,0,0,0.06)] sm:shadow-[0_1px_3px_rgba(0,0,0,0.03),0_8px_24px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.04),0_18px_40px_rgba(0,0,0,0.07)] hover:-translate-y-0.5 transition-all duration-300 ease-out">
                         {/* Card Header: Metadata Row */}
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-4 mb-3 sm:mb-4">
                           <div className="flex items-center gap-2 flex-wrap">

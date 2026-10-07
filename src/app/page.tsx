@@ -17,7 +17,7 @@ export default function Home() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <main className="relative w-full min-h-screen bg-white overflow-x-hidden">
+    <main className="relative w-full min-h-screen bg-white overflow-x-clip">
       <SplashScreen />
       <Navbar />
 

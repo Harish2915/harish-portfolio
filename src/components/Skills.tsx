@@ -103,15 +103,15 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="relative w-full min-h-screen lg:h-screen lg:max-h-screen bg-white flex items-center justify-center pt-24 pb-12 sm:pt-28 sm:pb-16 lg:py-16 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 overflow-hidden scroll-mt-20"
+      className="relative w-full bg-white pt-10 pb-16 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-28 px-3.5 sm:px-8 md:px-12 lg:px-16 xl:px-20 scroll-mt-20"
     >
       {/* Background subtle radial warm tint */}
       <div className="absolute inset-0 pointer-events-none select-none bg-[radial-gradient(circle_at_top_left,rgba(255,237,213,0.30),transparent_50%)]" />
 
-      <div className="relative z-10 w-full max-w-[1440px] mx-auto h-full flex flex-col justify-center">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-14 items-center">
-          {/* Left Column: Fixed / Sticky Stationary Heading & Bio */}
-          <div className="lg:col-span-4 xl:col-span-3.5 flex flex-col items-start justify-center lg:sticky lg:top-0 self-center">
+      <div className="relative z-10 w-full max-w-[1440px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 xl:gap-16 items-start">
+          {/* Left Column: Fixed / Sticky Stationary Heading & Bio (Sticky on Desktop) */}
+          <div className="lg:col-span-4 xl:col-span-3.5 flex flex-col items-start justify-start lg:sticky lg:top-[100px] self-start">
             {/* Eyebrow badge */}
             <motion.div
               initial={
@@ -201,22 +201,22 @@ export default function Skills() {
             </motion.div>
           </div>
 
-          {/* Right Column: Filter Tabs + Dedicated Scrollable Skill Cards Container */}
-          <div className="lg:col-span-8 xl:col-span-8.5 w-full flex flex-col gap-3 sm:gap-3.5 max-h-full">
+          {/* Right Column: Filter Tabs + Skill Cards Grid */}
+          <div className="lg:col-span-8 xl:col-span-8.5 w-full flex flex-col gap-4 sm:gap-5">
             {/* Category Filter Pills */}
             <motion.div
               initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.4, ease: LUXURY_EASE }}
-              className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-3.5 pt-0.5 no-scrollbar select-none shrink-0"
+              className="flex items-center gap-2 sm:gap-2.5 overflow-x-auto pb-1 pt-0.5 no-scrollbar select-none shrink-0"
             >
               {skillCategories.map((cat) => (
                 <button
                   key={cat.id}
                   type="button"
                   onClick={() => setActiveCategory(cat.id)}
-                  className={`relative px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 whitespace-nowrap cursor-pointer border ${activeCategory === cat.id
+                  className={`px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full text-xs sm:text-[13px] font-semibold transition-all duration-200 whitespace-nowrap cursor-pointer border ${activeCategory === cat.id
                       ? "bg-[#163327] text-white border-[#163327] shadow-[0_2px_8px_rgba(22,51,39,0.25)]"
                       : "bg-white text-zinc-600 hover:text-zinc-950 border-zinc-200/90 hover:border-zinc-300 shadow-[0_1px_4px_rgba(0,0,0,0.03)]"
                     }`}
@@ -224,22 +224,12 @@ export default function Skills() {
                   <span>
                     {cat.name} ({cat.count})
                   </span>
-                  {activeCategory === cat.id && (
-                    <motion.span
-                      layoutId="activeSkillCategoryIndicator"
-                      className="absolute -bottom-[9px] left-[20%] right-[20%] h-[3px] bg-[#ea580c] rounded-full shadow-[0_2px_8px_rgba(234,88,12,0.45),0_0_4px_rgba(234,88,12,0.3)] pointer-events-none"
-                      transition={{
-                        duration: shouldReduceMotion ? 0 : 0.4,
-                        ease: LUXURY_EASE,
-                      }}
-                    />
-                  )}
                 </button>
               ))}
             </motion.div>
 
-            {/* Scrollable Container ONLY for Right Side Cards */}
-            <div className="max-h-[58vh] sm:max-h-[62vh] lg:max-h-[66vh] xl:max-h-[70vh] overflow-y-auto p-1.5 sm:p-2 pr-2.5 sm:pr-3.5 skills-scrollbar overscroll-contain">
+            {/* Natural Document Flow Grid matching Experience and Education */}
+            <div className="w-full">
               <motion.div
                 layout
                 className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-3.5 lg:gap-4"

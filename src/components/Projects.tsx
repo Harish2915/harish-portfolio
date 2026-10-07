@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ArrowRight, ChevronLeft, ChevronRight, X, ExternalLink } from "lucide-react";
 
@@ -76,7 +76,9 @@ const PROJECTS: ProjectItem[] = [
     circleImage: "/projects/selavu1.png",
 
     modalImages: [
-      "/projects/selavu2.png"
+      "/projects/selavu2.png",
+      "/projects/selavu3.png",
+      "/projects/selavu4.png"
     ],
 
     duration: "2026"
@@ -154,12 +156,12 @@ const PROJECTS: ProjectItem[] = [
       "Cloudinary"
     ],
 
-    circleImage: "/projects/kadhambari4.png",
+    circleImage: "/projects/kadhambari1.png",
 
     modalImages: [
-      "/projects/kadhambari1.png",
       "/projects/kadhambari2.png",
       "/projects/kadhambari3.png",
+      "/projects/kadhambari4.png",
     ],
 
     duration: "2026",
@@ -279,6 +281,19 @@ export default function Projects() {
   useEffect(() => {
     setModalImageIndex(0);
   }, [activeProject]);
+
+  // Auto-cycle modal gallery images without arrows
+  useEffect(() => {
+    if (!isModalOpen) return;
+    const numImages = currentProject?.modalImages?.length || 0;
+    if (numImages <= 1) return;
+
+    const interval = setInterval(() => {
+      setModalImageIndex((prev) => (prev + 1) % numImages);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [isModalOpen, currentProject?.id, currentProject?.modalImages?.length]);
 
   // Lock background scroll and handle Escape key for modal
   useEffect(() => {
@@ -579,29 +594,30 @@ export default function Projects() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.96, y: 12 }}
               transition={{ duration: 0.3, ease: LUXURY_EASE }}
-              className="relative w-full max-w-4xl max-h-[90vh] bg-[#fafaf9] border border-zinc-200/90 rounded-[24px] sm:rounded-[28px] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25),0_10px_30px_rgba(0,0,0,0.12)] overflow-y-auto no-scrollbar z-10 flex flex-col p-6 sm:p-8 lg:p-10"
+              className="relative w-full max-w-4xl max-h-[90vh] bg-[#fafaf9] border border-zinc-200/90 rounded-[24px] sm:rounded-[28px] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25),0_10px_30px_rgba(0,0,0,0.12)] overflow-hidden z-10 flex flex-col"
               role="dialog"
               aria-modal="true"
               aria-labelledby="modal-project-title"
             >
-              {/* Close Button */}
+              {/* Close Button - Fixed in top-right of modal card */}
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="absolute top-4 right-4 sm:top-6 sm:right-6 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/90 hover:bg-white border border-zinc-200/80 shadow-[0_2px_8px_rgba(0,0,0,0.08)] flex items-center justify-center text-zinc-600 hover:text-zinc-950 transition-all cursor-pointer z-30"
+                className="absolute top-4 right-4 sm:top-5 sm:right-5 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/95 hover:bg-white border border-zinc-200/80 shadow-[0_2px_8px_rgba(0,0,0,0.12)] flex items-center justify-center text-zinc-600 hover:text-zinc-950 transition-all cursor-pointer z-50"
                 aria-label="Close modal"
               >
                 <X className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
 
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
-                {/* LEFT / TOP: Project Image Gallery (1, 2, 3 images) */}
-                <div className="lg:col-span-6 flex flex-col gap-3">
-                  {/* Main Modal Image Container with Layered Shadow */}
-                  <div className="relative w-full aspect-[16/10] bg-zinc-100 rounded-2xl border border-zinc-200/90 overflow-hidden flex items-center justify-center shadow-[0_16px_40px_rgba(0,0,0,0.12),0_4px_12px_rgba(0,0,0,0.06)] group">
-                    {currentProject.modalImages.length > 0 &&
-                      !failedModalImages[`${currentProject.id}-${modalImageIndex}`] ? (
-                      <>
+              {/* Scrollable Modal Body - Same unified scroll behavior as Skills screen */}
+              <div className="w-full max-h-[90vh] overflow-y-auto modal-scrollbar px-6 pb-6 pt-6 sm:px-8 sm:pb-8 sm:pt-7 lg:px-10 lg:pb-10 lg:pt-8">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
+                  {/* LEFT COLUMN: Sticky Anchor matching Skills screen (stays pinned at top while scrolling) */}
+                  <div className="lg:col-span-6 flex flex-col gap-3.5 lg:sticky lg:top-6 sm:lg:top-7 lg:top-8 self-start select-none">
+                    {/* Main Modal Image Container with Layered Shadow */}
+                    <div className="relative w-full aspect-[16/10] bg-zinc-100 rounded-2xl border border-zinc-200/90 overflow-hidden flex items-center justify-center shadow-[0_16px_40px_rgba(0,0,0,0.12),0_4px_12px_rgba(0,0,0,0.06)] group">
+                      {currentProject.modalImages.length > 0 &&
+                        !failedModalImages[`${currentProject.id}-${modalImageIndex}`] ? (
                         <AnimatePresence mode="wait">
                           <motion.img
                             key={`modal-img-${currentProject.id}-${modalImageIndex}`}
@@ -610,8 +626,8 @@ export default function Projects() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            transition={{ duration: 0.25 }}
-                            className="w-full h-full object-cover object-top"
+                            transition={{ duration: 0.35, ease: "easeInOut" }}
+                            className="w-full h-full object-cover object-top select-none pointer-events-none"
                             onError={() => {
                               setFailedModalImages((prev) => ({
                                 ...prev,
@@ -620,101 +636,47 @@ export default function Projects() {
                             }}
                           />
                         </AnimatePresence>
-
-                        {/* Prev / Next Arrows inside Modal Image if multiple images */}
-                        {currentProject.modalImages.length > 1 && (
-                          <div className="absolute inset-x-2 top-1/2 -translate-y-1/2 flex items-center justify-between pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                            <button
-                              type="button"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setModalImageIndex(
-                                  (prev) =>
-                                    (prev - 1 + currentProject.modalImages.length) %
-                                    currentProject.modalImages.length
-                                );
-                              }}
-                              className="w-8 h-8 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center pointer-events-auto backdrop-blur-sm cursor-pointer shadow-md transition-all"
-                              aria-label="Previous gallery image"
-                            >
-                              <ChevronLeft className="w-4 h-4" />
-                            </button>
-                            <button
-                              type="button"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setModalImageIndex(
-                                  (prev) => (prev + 1) % currentProject.modalImages.length
-                                );
-                              }}
-                              className="w-8 h-8 rounded-full bg-black/60 hover:bg-black/80 text-white flex items-center justify-center pointer-events-auto backdrop-blur-sm cursor-pointer shadow-md transition-all"
-                              aria-label="Next gallery image"
-                            >
-                              <ChevronRight className="w-4 h-4" />
-                            </button>
+                      ) : (
+                        /* Skeleton Mockup in Modal */
+                        <div className="w-full h-full bg-gradient-to-br from-zinc-100 via-zinc-200/60 to-zinc-200/80 p-5 flex flex-col justify-between relative overflow-hidden">
+                          <div className="w-1/3 h-3 rounded-full bg-white/80" />
+                          <div className="w-full h-[55%] rounded-xl bg-white/85 border border-zinc-200/70 p-3.5 flex flex-col justify-between shadow-sm relative overflow-hidden">
+                            <div className="w-1/4 h-2 rounded-full bg-zinc-200" />
+                            <div className="space-y-1.5 mt-auto">
+                              <div className="w-2/3 h-3 rounded bg-zinc-200/80" />
+                              <div className="w-1/2 h-2 rounded bg-zinc-200/60" />
+                            </div>
                           </div>
-                        )}
-                      </>
-                    ) : (
-                      /* Skeleton Mockup in Modal */
-                      <div className="w-full h-full bg-gradient-to-br from-zinc-100 via-zinc-200/60 to-zinc-200/80 p-5 flex flex-col justify-between relative overflow-hidden">
-                        <div className="w-1/3 h-3 rounded-full bg-white/80" />
-                        <div className="w-full h-[55%] rounded-xl bg-white/85 border border-zinc-200/70 p-3.5 flex flex-col justify-between shadow-sm relative overflow-hidden">
-                          <div className="w-1/4 h-2 rounded-full bg-zinc-200" />
-                          <div className="space-y-1.5 mt-auto">
-                            <div className="w-2/3 h-3 rounded bg-zinc-200/80" />
-                            <div className="w-1/2 h-2 rounded bg-zinc-200/60" />
-                          </div>
+                          <div className="w-1/2 h-2.5 rounded-full bg-white/70" />
                         </div>
-                        <div className="w-1/2 h-2.5 rounded-full bg-white/70" />
+                      )}
+                    </div>
+
+                    {/* Technologies Used below image */}
+                    {currentProject.tags && currentProject.tags.length > 0 && (
+                      <div className="w-full pt-3 mt-1 border-t border-zinc-200/80">
+                        <div className="flex items-center gap-1.5 mb-2.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#ea580c]" />
+                          <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-[#12221b]">
+                            Technologies Used
+                          </span>
+                        </div>
+                        <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                          {currentProject.tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-medium font-mono text-zinc-700 bg-white border border-zinc-200/90 shadow-sm"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     )}
                   </div>
 
-                  {/* Gallery Thumbnails (1, 2, 3 images with clean shadow & active orange border) */}
-                  {currentProject.modalImages.length > 1 && (
-                    <div className="flex items-center gap-2.5 overflow-x-auto py-1 no-scrollbar">
-                      {currentProject.modalImages.map((img, idx) => {
-                        const isThumbActive = modalImageIndex === idx;
-                        const isThumbFailed = failedModalImages[`${currentProject.id}-${idx}`];
-
-                        return (
-                          <button
-                            key={img}
-                            type="button"
-                            onClick={() => setModalImageIndex(idx)}
-                            className={`relative w-20 h-13 sm:w-22 sm:h-14 rounded-xl overflow-hidden border-2 transition-all cursor-pointer shrink-0 bg-zinc-100 ${isThumbActive
-                              ? "border-[#ea580c] ring-2 ring-orange-500/20 shadow-[0_4px_14px_rgba(234,88,12,0.28)]"
-                              : "border-zinc-200/90 hover:border-zinc-300 opacity-80 hover:opacity-100 shadow-[0_2px_8px_rgba(0,0,0,0.06)] hover:shadow-md"
-                              }`}
-                            aria-label={`View image ${idx + 1}`}
-                          >
-                            {!isThumbFailed ? (
-                              <img
-                                src={img}
-                                alt={`${currentProject.title} thumbnail ${idx + 1}`}
-                                className="w-full h-full object-cover object-top"
-                                onError={() => {
-                                  setFailedModalImages((prev) => ({
-                                    ...prev,
-                                    [`${currentProject.id}-${idx}`]: true,
-                                  }));
-                                }}
-                              />
-                            ) : (
-                              <div className="w-full h-full bg-zinc-200/70 flex items-center justify-center text-[10px] font-mono text-zinc-500 font-bold">
-                                0{idx + 1}
-                              </div>
-                            )}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
-
-                {/* RIGHT / BELOW: Detailed Info */}
-                <div className="lg:col-span-6 flex flex-col items-start">
+                  {/* RIGHT COLUMN: Natural Flow Content matching Skills screen */}
+                  <div className="lg:col-span-6 flex flex-col items-start pr-1 sm:pr-2">
                   {/* Project Number + Category + Duration */}
                   <div className="flex items-center gap-2 flex-wrap mb-2">
                     <span className="text-xs font-mono font-bold tracking-widest text-[#ea580c] uppercase">
@@ -767,23 +729,6 @@ export default function Projects() {
                     </div>
                   )}
 
-                  {/* Technologies Used */}
-                  <div className="w-full mb-6">
-                    <h4 className="text-[11px] sm:text-xs font-extrabold uppercase tracking-[0.16em] text-[#12221b] font-sans mb-2.5">
-                      Technologies
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {currentProject.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium font-mono text-zinc-700 bg-white border border-zinc-200/90 shadow-sm"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
                   {/* Action Buttons: GitHub & Live Project (Hidden if no URL exists) */}
                   {(Boolean(currentProject.githubUrl) ||
                     Boolean(currentProject.liveUrl)) && (
@@ -814,8 +759,9 @@ export default function Projects() {
                     )}
                 </div>
               </div>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
+        </div>
         )}
       </AnimatePresence>
     </section>

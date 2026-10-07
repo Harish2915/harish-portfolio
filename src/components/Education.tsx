@@ -208,8 +208,8 @@ export default function Education() {
                       <div className="w-5 sm:w-6 shrink-0 flex items-center justify-center pt-6">
                         <div
                           className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-white flex items-center justify-center z-10 transition-transform duration-300 group-hover:scale-110 ${item.isHighest
-                              ? "border-2 border-[#ea580c] shadow-[0_0_0_3px_rgba(234,88,12,0.20)]"
-                              : "border-2 border-[#163327] shadow-[0_0_0_3px_rgba(22,51,39,0.12)]"
+                            ? "border-2 border-[#ea580c] shadow-[0_0_0_3px_rgba(234,88,12,0.20)]"
+                            : "border-2 border-[#163327] shadow-[0_0_0_3px_rgba(22,51,39,0.12)]"
                             }`}
                           aria-hidden="true"
                         >
@@ -223,8 +223,8 @@ export default function Education() {
                       {/* Editorial Education Card Panel */}
                       <div
                         className={`flex-1 min-w-0 rounded-[22px] sm:rounded-[26px] bg-white p-5 sm:p-7 md:p-8 transition-all duration-300 ease-out hover:-translate-y-0.5 ${item.isHighest
-                            ? "border-2 border-orange-500/30 hover:border-orange-500/50 shadow-[0_-4px_24px_rgba(234,88,12,0.06),0_12px_36px_rgba(0,0,0,0.07)] md:shadow-[0_2px_8px_rgba(234,88,12,0.05),0_12px_32px_rgba(0,0,0,0.05)] hover:shadow-[0_6px_20px_rgba(234,88,12,0.10),0_20px_45px_rgba(0,0,0,0.08)] ring-1 ring-orange-500/10"
-                            : "border border-zinc-200/80 hover:border-zinc-300 shadow-[0_-4px_24px_rgba(0,0,0,0.05),0_10px_32px_rgba(0,0,0,0.06)] md:shadow-[0_1px_3px_rgba(0,0,0,0.03),0_8px_24px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.04),0_18px_40px_rgba(0,0,0,0.07)]"
+                          ? "border-2 border-orange-500/30 hover:border-orange-500/50 shadow-[0_-4px_24px_rgba(234,88,12,0.06),0_12px_36px_rgba(0,0,0,0.07)] md:shadow-[0_2px_8px_rgba(234,88,12,0.05),0_12px_32px_rgba(0,0,0,0.05)] hover:shadow-[0_6px_20px_rgba(234,88,12,0.10),0_20px_45px_rgba(0,0,0,0.08)] ring-1 ring-orange-500/10"
+                          : "border border-zinc-200/80 hover:border-zinc-300 shadow-[0_-4px_24px_rgba(0,0,0,0.05),0_10px_32px_rgba(0,0,0,0.06)] md:shadow-[0_1px_3px_rgba(0,0,0,0.03),0_8px_24px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.04),0_18px_40px_rgba(0,0,0,0.07)]"
                           }`}
                       >
                         {/* Card Header: Metadata Row */}
@@ -237,8 +237,8 @@ export default function Education() {
                             {item.statusBadge && (
                               <span
                                 className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-mono font-semibold uppercase tracking-wider ${item.isHighest
-                                    ? "text-[#ea580c] bg-orange-50 border border-orange-200/80"
-                                    : "text-zinc-600 bg-zinc-100 border border-zinc-200/80"
+                                  ? "text-[#ea580c] bg-orange-50 border border-orange-200/80"
+                                  : "text-zinc-600 bg-zinc-100 border border-zinc-200/80"
                                   }`}
                               >
                                 {item.statusBadge}
@@ -293,14 +293,14 @@ export default function Education() {
 
                           <div
                             className={`inline-flex items-center px-3 py-1 rounded-full text-xs sm:text-sm font-mono font-bold ${item.isHighest
-                                ? "bg-orange-500/10 text-[#ea580c] border border-orange-500/30 shadow-[0_1px_4px_rgba(234,88,12,0.15)]"
-                                : "bg-zinc-100 text-zinc-800 border border-zinc-200/80"
+                              ? "bg-orange-500/10 text-[#ea580c] border border-orange-500/30 shadow-[0_1px_4px_rgba(234,88,12,0.15)]"
+                              : "bg-zinc-100 text-zinc-800 border border-zinc-200/80"
                               }`}
                           >
                             <span>
                               {item.scoreLabel === "CGPA"
                                 ? `CGPA ${item.scoreValue}`
-                                : item.scoreValue}
+                                : `Percentage: ${item.scoreValue}`}
                             </span>
                           </div>
                         </div>
