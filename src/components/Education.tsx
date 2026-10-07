@@ -30,7 +30,7 @@ const EDUCATION_DATA: EducationItem[] = [
     scoreLabel: "CGPA",
     scoreValue: "7.64",
     isHighest: true,
-    statusBadge: "Current • Pursuing",
+    statusBadge: "Graduated",
   },
   {
     id: "higher-secondary",

@@ -9,6 +9,7 @@ import {
   Briefcase,
   ArrowRight,
 } from "lucide-react";
+import { navigateToSection } from "@/utils/navigation";
 
 const LUXURY_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -31,7 +32,7 @@ const details: AboutDetail[] = [
           Erode Sengunthar Engineering College
         </span>
         <span className="text-zinc-400 text-[11px] sm:text-xs font-sans mt-0.5">
-          2022 – 2026 (CGPA: 7.67)
+          2022 – 2026 (CGPA: 7.64)
         </span>
       </div>
     ),
@@ -254,7 +255,11 @@ export default function About() {
               className="inline-block"
             >
               <motion.a
-                href="#contact"
+                href="/contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigateToSection("contact", "/contact");
+                }}
                 whileHover={shouldReduceMotion ? undefined : { scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}

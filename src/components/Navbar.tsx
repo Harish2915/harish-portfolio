@@ -273,6 +273,31 @@ export default function Navbar() {
 
     window.addEventListener("popstate", handlePopState);
 
+    // Custom navigation handler for buttons across the portfolio (e.g. "View My Work")
+    const handlePortfolioNavigate = (e: Event) => {
+      const customEvent = e as CustomEvent<{ id: string; href: string }>;
+      const { id, href } = customEvent.detail || {};
+      const targetItem =
+        navItems.find((it) => it.id === id || it.href === href) ||
+        getNavByPath(href || id);
+
+      if (targetItem) {
+        setActive(targetItem.name);
+        isProgrammaticScroll.current = true;
+        programmaticTargetId.current = targetItem.id;
+        programmaticTargetName.current = targetItem.name;
+
+        if (scrollEndTimeout.current) clearTimeout(scrollEndTimeout.current);
+        scrollEndTimeout.current = setTimeout(() => {
+          isProgrammaticScroll.current = false;
+          programmaticTargetId.current = null;
+          programmaticTargetName.current = null;
+        }, 1200);
+      }
+    };
+
+    window.addEventListener("portfolio-navigate", handlePortfolioNavigate as EventListener);
+
     // 3. User manual scroll interruption handler (wheel or touch drag)
     const handleUserInterrupt = () => {
       if (isProgrammaticScroll.current) {
@@ -327,6 +352,7 @@ export default function Navbar() {
 
     return () => {
       window.removeEventListener("popstate", handlePopState);
+      window.removeEventListener("portfolio-navigate", handlePortfolioNavigate as EventListener);
       window.removeEventListener("wheel", handleUserInterrupt);
       window.removeEventListener("touchstart", handleUserInterrupt);
       window.removeEventListener("scroll", handleScroll);

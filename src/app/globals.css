@@ -47,6 +47,7 @@
   --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-serif: 'Playfair Display', Georgia, Cambria, serif;
   --font-script: 'Caveat', cursive, handwriting;
+  --font-brush: 'Permanent Marker', cursive, sans-serif;
 }
 
 @theme {
@@ -55,6 +56,11 @@
   --font-sans: var(--font-sans);
   --font-serif: var(--font-serif);
   --font-script: var(--font-script);
+  --font-brush: var(--font-brush);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -77,6 +83,10 @@ body {
 
 .font-script {
   font-family: var(--font-script) !important;
+}
+
+.font-brush {
+  font-family: var(--font-brush) !important;
 }
 
 /* Custom Glassmorphism styles */

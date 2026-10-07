@@ -3,6 +3,7 @@
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Download } from "lucide-react";
+import { navigateToSection } from "@/utils/navigation";
 import {
   PythonIcon,
   JavaScriptIcon,
@@ -78,15 +79,15 @@ export default function Hero() {
             delay: shouldReduceMotion ? 0 : 0.18,
             ease: LUXURY_EASE,
           }}
-          className="mb-1"
+          className="mb-1.5 min-[360px]:mb-2 min-[400px]:mb-2.5 sm:mb-1"
         >
-          <span className="text-[11px] sm:text-[13px] font-extrabold uppercase tracking-[0.2em] text-[#ea580c] font-sans">
+          <span className="text-[10.5px] min-[360px]:text-[11.5px] min-[410px]:text-[12.5px] sm:text-[13px] font-extrabold uppercase tracking-[0.2em] text-[#ea580c] font-sans">
             Full Stack Developer
           </span>
         </motion.div>
 
         {/* 3. Main Editorial Headline */}
-        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[66px] xl:text-[72px] font-serif font-bold tracking-tight leading-[1.05] mb-1.5 sm:mb-2.5">
+        <h1 className="text-[30px] min-[360px]:text-[34px] min-[400px]:text-[38px] min-[480px]:text-[42px] sm:text-5xl md:text-6xl lg:text-[66px] xl:text-[72px] font-serif font-bold tracking-tight leading-[1.1] sm:leading-[1.05] mb-2.5 min-[360px]:mb-3 min-[400px]:mb-3.5 min-[480px]:mb-4 sm:mb-2.5">
           <span className="block overflow-hidden">
             <motion.span
               initial={
@@ -138,13 +139,13 @@ export default function Hero() {
             delay: shouldReduceMotion ? 0 : 0.52,
             ease: LUXURY_EASE,
           }}
-          className="text-xs sm:text-base md:text-[17px] text-zinc-700 max-w-lg leading-relaxed mb-2.5 sm:mb-5 font-sans text-left line-clamp-2 sm:line-clamp-none"
+          className="text-[12px] min-[360px]:text-[13px] min-[400px]:text-[14px] min-[480px]:text-[15px] sm:text-base md:text-[17px] text-zinc-700 max-w-lg leading-normal min-[360px]:leading-relaxed mb-3 min-[360px]:mb-3.5 min-[400px]:mb-4 min-[480px]:mb-5 sm:mb-5 font-sans text-left line-clamp-2 sm:line-clamp-none"
         >
           I build modern web, mobile and AI solutions that solve real-world problems.
         </motion.p>
 
         {/* 5. CTA Buttons - Sequential reveal with subtle scale (0.98 -> 1) & smooth instant hover */}
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-4 w-full sm:w-auto mb-2.5 sm:mb-5">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 min-[390px]:gap-2.5 sm:gap-4 w-full sm:w-auto mb-2.5 min-[360px]:mb-3 min-[400px]:mb-3.5 sm:mb-5">
           {/* Primary: View My Work */}
           <motion.div
             initial={
@@ -161,14 +162,18 @@ export default function Hero() {
             className="w-full sm:w-auto"
           >
             <motion.a
-              href="#projects"
+              href="/projects"
+              onClick={(e) => {
+                e.preventDefault();
+                navigateToSection("projects", "/projects");
+              }}
               whileHover={shouldReduceMotion ? undefined : { scale: 1.02, y: -2 }}
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
-              className="w-full sm:w-auto inline-flex items-center justify-center px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-[#ff6a00] to-[#ea580c] border border-orange-400/40 hover:border-orange-300/60 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_6px_18px_rgba(234,88,12,0.22)] hover:shadow-[0_3px_6px_rgba(0,0,0,0.05),0_12px_24px_rgba(234,88,12,0.30)] transition-all duration-300 ease-out group font-sans text-center cursor-pointer"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-4 min-[360px]:px-5 sm:px-6 py-2 min-[360px]:py-2.5 sm:py-3 rounded-full text-[11.5px] min-[360px]:text-xs min-[400px]:text-[13px] sm:text-sm font-semibold text-white bg-gradient-to-r from-[#ff6a00] to-[#ea580c] border border-orange-400/40 hover:border-orange-300/60 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_6px_18px_rgba(234,88,12,0.22)] hover:shadow-[0_3px_6px_rgba(0,0,0,0.05),0_12px_24px_rgba(234,88,12,0.30)] transition-all duration-300 ease-out group font-sans text-center cursor-pointer"
             >
               <span>View My Work</span>
-              <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1" />
+              <ArrowRight className="w-3.5 h-3.5 min-[360px]:w-4 min-[360px]:h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1" />
             </motion.a>
           </motion.div>
 
@@ -194,10 +199,10 @@ export default function Hero() {
               whileHover={shouldReduceMotion ? undefined : { y: -2 }}
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
-              className="w-full sm:w-auto glass-pill inline-flex items-center justify-center px-5 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold text-[#163327] hover:bg-white transition-all duration-200 shadow-sm hover:shadow-md border border-zinc-200/90 group font-sans text-center"
+              className="w-full sm:w-auto glass-pill inline-flex items-center justify-center px-4 min-[360px]:px-5 py-2 min-[360px]:py-2.5 sm:py-3 rounded-full text-[11.5px] min-[360px]:text-xs min-[400px]:text-[13px] sm:text-sm font-semibold text-[#163327] hover:bg-white transition-all duration-200 shadow-sm hover:shadow-md border border-zinc-200/90 group font-sans text-center"
             >
               <span>Download Resume</span>
-              <Download className="w-4 h-4 ml-2.5 transition-transform duration-200 group-hover:translate-y-0.5 text-[#163327]" />
+              <Download className="w-3.5 h-3.5 min-[360px]:w-4 min-[360px]:h-4 ml-2 min-[360px]:ml-2.5 transition-transform duration-200 group-hover:translate-y-0.5 text-[#163327]" />
             </motion.a>
           </motion.div>
         </div>
@@ -215,9 +220,9 @@ export default function Hero() {
             delay: shouldReduceMotion ? 0 : 0.8,
             ease: LUXURY_EASE,
           }}
-          className="glass-panel rounded-2xl py-3 px-3.5 sm:py-3 sm:px-6 w-full max-w-full sm:max-w-lg mb-2.5 sm:mb-5"
+          className="glass-panel rounded-2xl py-2.5 min-[360px]:py-3 px-3 min-[360px]:px-3.5 sm:py-3 sm:px-6 w-full max-w-full sm:max-w-lg mb-2 min-[360px]:mb-2.5 min-[400px]:mb-3 sm:mb-5"
         >
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-3 gap-y-5 sm:gap-0 items-center divide-y-0 sm:divide-x divide-zinc-200/70">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-3 gap-y-4 min-[360px]:gap-y-5 sm:gap-0 items-center divide-y-0 sm:divide-x divide-zinc-200/70">
             {stats.map((stat, idx) => (
               <motion.div
                 key={stat.label}
@@ -234,10 +239,10 @@ export default function Hero() {
                 }}
                 className={`flex flex-col text-center ${idx !== 0 ? "sm:pl-3" : ""}`}
               >
-                <span className="text-lg sm:text-2xl font-extrabold text-zinc-950 tracking-tight leading-none mb-1 font-sans">
+                <span className="text-[16px] min-[360px]:text-lg min-[400px]:text-xl sm:text-2xl font-extrabold text-zinc-950 tracking-tight leading-none mb-1 font-sans">
                   {stat.value}
                 </span>
-                <span className="text-[10px] sm:text-[11px] font-medium text-zinc-500 font-sans">
+                <span className="text-[9.5px] min-[360px]:text-[10px] min-[400px]:text-[10.5px] sm:text-[11px] font-medium text-zinc-500 font-sans">
                   {stat.label}
                 </span>
               </motion.div>
@@ -246,7 +251,7 @@ export default function Hero() {
         </motion.div>
 
         {/* 7. Technology badges - Reveal sequentially with subtle fade + upward motion */}
-        <div className="flex flex-col gap-2 w-full overflow-hidden">
+        <div className="flex flex-col gap-1.5 min-[360px]:gap-2 w-full overflow-hidden">
           <motion.span
             initial={
               shouldReduceMotion
@@ -259,7 +264,7 @@ export default function Hero() {
               delay: shouldReduceMotion ? 0 : 1.0,
               ease: LUXURY_EASE,
             }}
-            className="text-xs sm:text-sm font-medium text-zinc-700 font-sans"
+            className="text-[11px] min-[360px]:text-xs min-[400px]:text-[13px] sm:text-sm font-medium text-zinc-700 font-sans"
           >
             Technologies I work with
           </motion.span>
@@ -304,10 +309,10 @@ export default function Hero() {
                         : 1.12 + Math.min(idx, 8) * 0.03,
                       ease: LUXURY_EASE,
                     }}
-                    className="glass-pill px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full flex items-center gap-1.5 sm:gap-2 cursor-pointer shadow-sm hover:shadow-md transition-all shrink-0 select-none"
+                    className="glass-pill px-2.5 min-[360px]:px-3 py-1 min-[360px]:py-1.5 sm:px-3.5 sm:py-2 rounded-full flex items-center gap-1.5 sm:gap-2 cursor-pointer shadow-sm hover:shadow-md transition-all shrink-0 select-none"
                   >
                     <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                    <span className="text-xs sm:text-sm font-semibold text-zinc-800 font-sans">
+                    <span className="text-[11px] min-[360px]:text-xs min-[400px]:text-[13px] sm:text-sm font-semibold text-zinc-800 font-sans">
                       {tech.name}
                     </span>
                   </motion.div>
@@ -319,7 +324,7 @@ export default function Hero() {
       </div>
 
       {/* 9. Decorative element: Hand-lettered signature script quote pinned into bottom-right corner */}
-      <div className="absolute right-3 sm:right-6 md:right-8 lg:right-10 xl:right-12 bottom-2 sm:bottom-4 md:bottom-5 lg:bottom-6 select-none pointer-events-none z-20">
+      <div className="absolute right-3 min-[380px]:right-4 min-[450px]:right-5 sm:right-6 md:right-8 lg:right-10 xl:right-12 bottom-7 min-[380px]:bottom-8 min-[450px]:bottom-9 sm:bottom-4 md:bottom-5 lg:bottom-6 select-none pointer-events-none z-20">
         <motion.div
           initial={
             shouldReduceMotion
@@ -332,7 +337,7 @@ export default function Hero() {
             ease: LUXURY_EASE,
             delay: shouldReduceMotion ? 0 : 0.85,
           }}
-          className="flex flex-col items-start leading-[1.0] tracking-wide text-white drop-shadow-[0_3px_10px_rgba(0,0,0,0.85)] font-script text-lg sm:text-2xl md:text-2xl lg:text-[26px] xl:text-[30px] font-bold"
+          className="flex flex-col items-start leading-[1.18] min-[360px]:leading-[1.22] min-[400px]:leading-[1.26] sm:leading-[1.0] tracking-wide text-white drop-shadow-[0_3px_10px_rgba(0,0,0,0.85)] font-script text-[20px] min-[360px]:text-[22px] min-[400px]:text-[24px] min-[480px]:text-[26px] sm:text-2xl md:text-2xl lg:text-[26px] xl:text-[30px] font-bold"
           style={{ fontFamily: "'Caveat', cursive" }}
         >
           <span>Ideas</span>
