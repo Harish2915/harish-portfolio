@@ -519,7 +519,7 @@ export default function Projects() {
 
                 {/* Short Project Description */}
                 <div className="w-full max-w-lg mb-4 sm:mb-5">
-                  <p className="text-sm sm:text-[15px] text-zinc-600 leading-relaxed font-sans">
+                  <p className="text-sm sm:text-[15px] text-zinc-600 leading-relaxed font-sans text-justify">
                     {currentProject.description}
                   </p>
                 </div>
@@ -705,7 +705,7 @@ export default function Projects() {
                   </h3>
 
                   {/* Full Description */}
-                  <p className="text-sm sm:text-[15px] text-zinc-600 leading-relaxed font-sans mb-5">
+                  <p className="text-sm sm:text-[15px] text-zinc-600 leading-relaxed font-sans mb-5 text-justify">
                     {currentProject.description}
                   </p>
 
@@ -719,7 +719,7 @@ export default function Projects() {
                         {currentProject.features.map((feat, i) => (
                           <li
                             key={i}
-                            className="flex items-start gap-2.5 text-xs sm:text-[13px] text-zinc-600 font-sans leading-snug"
+                            className="flex items-start gap-2.5 text-xs sm:text-[13px] text-zinc-600 font-sans leading-snug text-justify"
                           >
                             <span className="w-1.5 h-1.5 rounded-full bg-[#ea580c] mt-1.5 shrink-0" />
                             <span>{feat}</span>

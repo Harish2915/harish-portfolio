@@ -182,7 +182,7 @@ export default function Skills() {
                 delay: shouldReduceMotion ? 0 : 0.36,
                 ease: LUXURY_EASE,
               }}
-              className="text-xs sm:text-base text-zinc-600 font-sans leading-relaxed mb-4 sm:mb-6 max-w-md"
+              className="text-xs sm:text-base text-zinc-600 font-sans leading-relaxed mb-4 sm:mb-6 max-w-md text-justify"
             >
               I use modern tools and frameworks to build scalable, secure and
               high-performance applications.
@@ -216,9 +216,9 @@ export default function Skills() {
                   key={cat.id}
                   type="button"
                   onClick={() => setActiveCategory(cat.id)}
-                  className={`px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full text-xs sm:text-[13px] font-semibold transition-all duration-200 whitespace-nowrap cursor-pointer border ${activeCategory === cat.id
-                      ? "bg-[#163327] text-white border-[#163327] shadow-[0_2px_8px_rgba(22,51,39,0.25)]"
-                      : "bg-white text-zinc-600 hover:text-zinc-950 border-zinc-200/90 hover:border-zinc-300 shadow-[0_1px_4px_rgba(0,0,0,0.03)]"
+                  className={`px-4 sm:px-4.5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 whitespace-nowrap cursor-pointer border ${activeCategory === cat.id
+                    ? "bg-[#163327] text-white border-[#163327] shadow-[0_2px_8px_rgba(22,51,39,0.25)]"
+                    : "bg-white text-zinc-600 hover:text-zinc-950 border-zinc-200/90 hover:border-zinc-300 shadow-[0_1px_4px_rgba(0,0,0,0.03)]"
                     }`}
                 >
                   <span>
@@ -232,7 +232,7 @@ export default function Skills() {
             <div className="w-full">
               <motion.div
                 layout
-                className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-3.5 lg:gap-4"
+                className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3.5 sm:gap-4 lg:gap-4.5"
               >
                 <AnimatePresence mode="popLayout">
                   {currentSkills.map((skill, idx) => {
@@ -257,12 +257,12 @@ export default function Skills() {
                           delay: shouldReduceMotion ? 0 : 0.015 * idx,
                           ease: LUXURY_EASE,
                         }}
-                        className="rounded-2xl sm:rounded-3xl border border-zinc-200/90 hover:border-zinc-300 bg-white p-3.5 sm:p-4 md:p-5 flex flex-col items-center justify-center text-center gap-2.5 sm:gap-3 shadow-[0_2px_8px_rgba(0,0,0,0.05),0_10px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_14px_rgba(0,0,0,0.08),0_18px_38px_rgba(0,0,0,0.11)] hover:-translate-y-1 transition-all duration-300 ease-out group cursor-default select-none aspect-square sm:aspect-[1/1.05]"
+                        className="rounded-2xl sm:rounded-3xl border border-zinc-200/90 hover:border-zinc-300 bg-white p-4 sm:p-5 md:p-5.5 flex flex-col items-center justify-center text-center gap-2.5 sm:gap-3.5 shadow-[0_2px_8px_rgba(0,0,0,0.05),0_10px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_14px_rgba(0,0,0,0.08),0_18px_38px_rgba(0,0,0,0.11)] hover:-translate-y-1 transition-all duration-300 ease-out group cursor-default select-none aspect-square sm:aspect-[1/1.05]"
                       >
-                        <div className="w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 shrink-0">
-                          <Icon className="w-8 h-8 sm:w-10 sm:h-10" />
+                        <div className="w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 shrink-0">
+                          <Icon className="w-9 h-9 sm:w-10 sm:h-10" />
                         </div>
-                        <span className="text-[11px] sm:text-xs md:text-[13px] font-bold text-zinc-900 group-hover:text-zinc-950 font-sans tracking-tight transition-colors line-clamp-1">
+                        <span className="text-xs sm:text-[13px] md:text-sm font-bold text-zinc-900 group-hover:text-zinc-950 font-sans tracking-tight transition-colors line-clamp-1">
                           {skill.name}
                         </span>
                       </motion.div>

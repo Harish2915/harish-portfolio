@@ -230,7 +230,7 @@ export default function About() {
                 delay: shouldReduceMotion ? 0 : 0.36,
                 ease: LUXURY_EASE,
               }}
-              className="text-xs sm:text-base text-zinc-600 font-sans leading-relaxed mb-6 sm:mb-7 max-w-lg"
+              className="text-xs sm:text-base text-zinc-600 font-sans leading-relaxed mb-6 sm:mb-7 max-w-lg text-justify"
             >
               Motivated AI and Data Science undergraduate with hands-on experience
               in Full Stack and Mobile Application Development. I love building

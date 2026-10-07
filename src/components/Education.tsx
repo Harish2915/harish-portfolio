@@ -135,7 +135,7 @@ export default function Education() {
                 delay: shouldReduceMotion ? 0 : 0.36,
                 ease: LUXURY_EASE,
               }}
-              className="text-xs sm:text-[15px] text-zinc-600 font-sans leading-relaxed mb-4 sm:mb-6 max-w-sm"
+              className="text-xs sm:text-[15px] text-zinc-600 font-sans leading-relaxed mb-4 sm:mb-6 max-w-sm text-justify"
             >
               Formal education in Artificial Intelligence, Data Science, and Computer Science, establishing strong computational principles, analytical problem-solving, and algorithmic thinking.
             </motion.p>

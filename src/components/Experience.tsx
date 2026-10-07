@@ -25,7 +25,7 @@ const EXPERIENCES: ExperienceItem[] = [
     number: "01",
     role: "Full Stack Developer Intern",
     company: "Younder Bots (OPC) Pvt Ltd",
-    employmentType: "Internship",
+    employmentType: "Developer",
     duration: "Sep 2025 – Jan 2026",
     responsibilities: [
       "Developed and integrated RESTful APIs using FastAPI and MySQL, enabling efficient backend data processing and system communication.",
@@ -130,7 +130,7 @@ export default function Experience() {
                 delay: shouldReduceMotion ? 0 : 0.36,
                 ease: LUXURY_EASE,
               }}
-              className="text-xs sm:text-[15px] text-zinc-600 font-sans leading-relaxed mb-4 sm:mb-6 max-w-sm"
+              className="text-xs sm:text-[15px] text-zinc-600 font-sans leading-relaxed mb-4 sm:mb-6 max-w-sm text-justify"
             >
               Hands-on software development experience building scalable full-stack applications, robust backend APIs, and modern responsive web interfaces.
             </motion.p>
@@ -240,7 +240,7 @@ export default function Experience() {
                               {exp.responsibilities.map((resp, i) => (
                                 <li
                                   key={i}
-                                  className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-600 font-sans leading-relaxed"
+                                  className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-600 font-sans leading-relaxed text-justify"
                                 >
                                   <CheckCircle2 className="w-4 h-4 text-[#ea580c] mt-0.5 shrink-0" />
                                   <span>{resp}</span>
