@@ -329,7 +329,7 @@ export default function Contact() {
                 <div className="flex items-center gap-2 mb-1.5">
                   <Sparkles className="w-4 h-4 text-[#ea580c]" />
                   <span className="text-xs font-bold uppercase tracking-wider text-[#ea580c] font-sans">
-                    Direct Channel
+                    Get In Touch
                   </span>
                 </div>
                 <h3 className="text-xl sm:text-2xl font-serif font-bold text-zinc-900 tracking-tight">
@@ -470,11 +470,12 @@ export default function Contact() {
                     <motion.button
                       type="submit"
                       disabled={status === "submitting"}
-                      whileHover={status === "submitting" ? undefined : { scale: 1.01, y: -1 }}
+                      whileHover={status === "submitting" ? undefined : { scale: 1.02, y: -2 }}
                       whileTap={status === "submitting" ? undefined : { scale: 0.98 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
                       className={`inline-flex items-center justify-center px-6 sm:px-7 py-3 rounded-full text-xs sm:text-sm font-semibold text-white transition-all duration-300 ease-out font-sans order-1 sm:order-2 cursor-pointer shadow-[0_1px_2px_rgba(0,0,0,0.04),0_6px_18px_rgba(234,88,12,0.22)] hover:shadow-[0_3px_6px_rgba(0,0,0,0.05),0_12px_24px_rgba(234,88,12,0.30)] ${status === "submitting"
-                          ? "bg-zinc-400 cursor-not-allowed"
-                          : "bg-gradient-to-r from-[#ff6a00] to-[#ea580c] border border-orange-400/40 hover:border-orange-300/60"
+                        ? "bg-zinc-400 cursor-not-allowed"
+                        : "bg-gradient-to-r from-[#ff6a00] to-[#ea580c] border border-orange-400/40 hover:border-orange-300/60"
                         }`}
                     >
                       {status === "submitting" ? (

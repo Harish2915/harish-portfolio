@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import {
   FlutterIcon,
@@ -94,11 +94,32 @@ export const skillCategories = [
 export default function Skills() {
   const shouldReduceMotion = useReducedMotion();
   const [activeCategory, setActiveCategory] = useState<string>("all");
+  const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
 
-  const currentSkills: Skill[] =
-    activeCategory === "all"
-      ? allSkills
-      : allSkills.filter((s) => s.category === activeCategory);
+  const currentSkills: Skill[] = useMemo(() => {
+    const filtered =
+      activeCategory === "all"
+        ? allSkills
+        : allSkills.filter((s) => s.category === activeCategory);
+
+    if (!selectedSkill) return filtered;
+
+    const selectedIndex = filtered.findIndex((s) => s.name === selectedSkill);
+    if (selectedIndex === -1) return filtered;
+
+    const selected = filtered[selectedIndex];
+    const others = filtered.filter((s) => s.name !== selectedSkill);
+    return [selected, ...others];
+  }, [activeCategory, selectedSkill]);
+
+  const handleSkillClick = (skillName: string) => {
+    setSelectedSkill((prev) => (prev === skillName ? null : skillName));
+  };
+
+  const handleCategorySelect = (catId: string) => {
+    setActiveCategory(catId);
+    setSelectedSkill(null);
+  };
 
   return (
     <section
@@ -209,14 +230,14 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.4, ease: LUXURY_EASE }}
-              className="flex items-center gap-2 sm:gap-2.5 overflow-x-auto pb-1 pt-0.5 no-scrollbar select-none shrink-0"
+              className="flex items-center gap-2 sm:gap-2.5 overflow-x-auto pb-1.5 pt-0.5 no-scrollbar select-none shrink-0"
             >
               {skillCategories.map((cat) => (
                 <button
                   key={cat.id}
                   type="button"
-                  onClick={() => setActiveCategory(cat.id)}
-                  className={`px-4 sm:px-4.5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 whitespace-nowrap cursor-pointer border ${activeCategory === cat.id
+                  onClick={() => handleCategorySelect(cat.id)}
+                  className={`px-3.5 sm:px-4 py-2 rounded-full text-xs sm:text-[13px] font-semibold transition-all duration-200 whitespace-nowrap cursor-pointer border ${activeCategory === cat.id
                     ? "bg-[#163327] text-white border-[#163327] shadow-[0_2px_8px_rgba(22,51,39,0.25)]"
                     : "bg-white text-zinc-600 hover:text-zinc-950 border-zinc-200/90 hover:border-zinc-300 shadow-[0_1px_4px_rgba(0,0,0,0.03)]"
                     }`}
@@ -231,38 +252,60 @@ export default function Skills() {
             {/* Natural Document Flow Grid matching Experience and Education */}
             <div className="w-full">
               <motion.div
-                layout
+                layoutRoot
                 className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3.5 sm:gap-4 lg:gap-4.5"
               >
-                <AnimatePresence mode="popLayout">
-                  {currentSkills.map((skill, idx) => {
+                <AnimatePresence initial={false}>
+                  {currentSkills.map((skill) => {
                     const Icon = skill.icon;
+                    const isSelected = selectedSkill === skill.name;
+
                     return (
                       <motion.div
-                        layout
+                        layout="position"
                         key={skill.name}
+                        onClick={() => handleSkillClick(skill.name)}
                         initial={
                           shouldReduceMotion
                             ? { opacity: 0 }
-                            : { opacity: 0, scale: 0.94, y: 10 }
+                            : { opacity: 0, scale: 0.94 }
                         }
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{
-                          opacity: 0,
-                          scale: 0.92,
-                          transition: { duration: 0.15 },
-                        }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={
+                          shouldReduceMotion
+                            ? { opacity: 0 }
+                            : { opacity: 0, scale: 0.94 }
+                        }
                         transition={{
-                          duration: shouldReduceMotion ? 0.2 : 0.32,
-                          delay: shouldReduceMotion ? 0 : 0.015 * idx,
-                          ease: LUXURY_EASE,
+                          layout: {
+                            duration: shouldReduceMotion ? 0 : 0.6,
+                            ease: LUXURY_EASE,
+                          },
+                          opacity: { duration: 0.25 },
+                          scale: { duration: 0.25 },
                         }}
-                        className="rounded-2xl sm:rounded-3xl border border-zinc-200/90 hover:border-zinc-300 bg-white p-4 sm:p-5 md:p-5.5 flex flex-col items-center justify-center text-center gap-2.5 sm:gap-3.5 shadow-[0_2px_8px_rgba(0,0,0,0.05),0_10px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_14px_rgba(0,0,0,0.08),0_18px_38px_rgba(0,0,0,0.11)] hover:-translate-y-1 transition-all duration-300 ease-out group cursor-default select-none aspect-square sm:aspect-[1/1.05]"
+                        style={{ willChange: "transform" }}
+                        whileHover={
+                          shouldReduceMotion
+                            ? undefined
+                            : {
+                                y: -3,
+                                transition: { duration: 0.2, ease: LUXURY_EASE },
+                              }
+                        }
+                        whileTap={
+                          shouldReduceMotion ? undefined : { scale: 0.97 }
+                        }
+                        className={`rounded-2xl sm:rounded-3xl border bg-white p-4 sm:p-5 md:p-5.5 flex flex-col items-center justify-center text-center gap-2.5 sm:gap-3.5 cursor-pointer select-none aspect-square sm:aspect-[1/1.05] transition-[border-color,box-shadow] duration-200 ${
+                          isSelected
+                            ? "border-[#ea580c] ring-2 ring-orange-500/25 shadow-[0_4px_14px_rgba(234,88,12,0.18),0_12px_28px_rgba(234,88,12,0.12)]"
+                            : "border-zinc-200/90 hover:border-zinc-300 shadow-[0_2px_8px_rgba(0,0,0,0.05),0_10px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_14px_rgba(0,0,0,0.08),0_18px_38px_rgba(0,0,0,0.11)]"
+                        }`}
                       >
-                        <div className="w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 shrink-0">
+                        <div className="w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center shrink-0 pointer-events-none">
                           <Icon className="w-9 h-9 sm:w-10 sm:h-10" />
                         </div>
-                        <span className="text-xs sm:text-[13px] md:text-sm font-bold text-zinc-900 group-hover:text-zinc-950 font-sans tracking-tight transition-colors line-clamp-1">
+                        <span className="text-xs sm:text-[13px] md:text-sm font-bold text-zinc-900 group-hover:text-zinc-950 font-sans tracking-tight transition-colors line-clamp-1 pointer-events-none">
                           {skill.name}
                         </span>
                       </motion.div>

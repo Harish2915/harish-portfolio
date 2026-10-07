@@ -677,91 +677,91 @@ export default function Projects() {
 
                   {/* RIGHT COLUMN: Natural Flow Content matching Skills screen */}
                   <div className="lg:col-span-6 flex flex-col items-start pr-1 sm:pr-2">
-                  {/* Project Number + Category + Duration */}
-                  <div className="flex items-center gap-2 flex-wrap mb-2">
-                    <span className="text-xs font-mono font-bold tracking-widest text-[#ea580c] uppercase">
-                      PROJECT {currentProject.number}
-                    </span>
-                    <span className="text-zinc-300 font-sans">•</span>
-                    <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-zinc-500 bg-zinc-100 px-2.5 py-0.5 rounded-full border border-zinc-200/80">
-                      {currentProject.category}
-                    </span>
-                    {currentProject.duration && (
-                      <>
-                        <span className="text-zinc-300 font-sans">•</span>
-                        <span className="text-xs text-zinc-400 font-mono">
-                          {currentProject.duration}
-                        </span>
-                      </>
-                    )}
-                  </div>
-
-                  {/* Project Title */}
-                  <h3
-                    id="modal-project-title"
-                    className="text-2xl sm:text-3xl font-serif font-bold text-[#12221b] tracking-tight mb-3"
-                  >
-                    {currentProject.title}
-                  </h3>
-
-                  {/* Full Description */}
-                  <p className="text-sm sm:text-[15px] text-zinc-600 leading-relaxed font-sans mb-5 text-justify">
-                    {currentProject.description}
-                  </p>
-
-                  {/* Key Features */}
-                  {currentProject.features && currentProject.features.length > 0 && (
-                    <div className="w-full mb-5">
-                      <h4 className="text-[11px] sm:text-xs font-extrabold uppercase tracking-[0.16em] text-[#12221b] font-sans mb-2.5">
-                        Key Features
-                      </h4>
-                      <ul className="space-y-2">
-                        {currentProject.features.map((feat, i) => (
-                          <li
-                            key={i}
-                            className="flex items-start gap-2.5 text-xs sm:text-[13px] text-zinc-600 font-sans leading-snug text-justify"
-                          >
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#ea580c] mt-1.5 shrink-0" />
-                            <span>{feat}</span>
-                          </li>
-                        ))}
-                      </ul>
+                    {/* Project Number + Category + Duration */}
+                    <div className="flex items-center gap-2 flex-wrap mb-2">
+                      <span className="text-xs font-mono font-bold tracking-widest text-[#ea580c] uppercase">
+                        PROJECT {currentProject.number}
+                      </span>
+                      <span className="text-zinc-300 font-sans">•</span>
+                      <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-zinc-500 bg-zinc-100 px-2.5 py-0.5 rounded-full border border-zinc-200/80">
+                        {currentProject.category}
+                      </span>
+                      {currentProject.duration && (
+                        <>
+                          <span className="text-zinc-300 font-sans">•</span>
+                          <span className="text-xs text-zinc-400 font-mono">
+                            {currentProject.duration}
+                          </span>
+                        </>
+                      )}
                     </div>
-                  )}
 
-                  {/* Action Buttons: GitHub & Live Project (Hidden if no URL exists) */}
-                  {(Boolean(currentProject.githubUrl) ||
-                    Boolean(currentProject.liveUrl)) && (
-                      <div className="flex items-center gap-3 pt-1 flex-wrap">
-                        {currentProject.githubUrl && (
-                          <a
-                            href={currentProject.githubUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 shadow-sm hover:shadow transition-all"
-                          >
-                            <GithubIcon className="w-4 h-4" />
-                            <span>GitHub</span>
-                          </a>
-                        )}
-                        {currentProject.liveUrl && (
-                          <a
-                            href={currentProject.liveUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-[#ff6a00] to-[#ea580c] shadow-[0_4px_14px_rgba(234,88,12,0.25)] hover:shadow-[0_6px_20px_rgba(234,88,12,0.35)] transition-all"
-                          >
-                            <span>Live Project</span>
-                            <ExternalLink className="w-4 h-4" />
-                          </a>
-                        )}
+                    {/* Project Title */}
+                    <h3
+                      id="modal-project-title"
+                      className="text-2xl sm:text-3xl font-serif font-bold text-[#12221b] tracking-tight mb-3"
+                    >
+                      {currentProject.title}
+                    </h3>
+
+                    {/* Full Description */}
+                    <p className="text-sm sm:text-[15px] text-zinc-600 leading-relaxed font-sans mb-5 text-justify">
+                      {currentProject.description}
+                    </p>
+
+                    {/* Key Features */}
+                    {currentProject.features && currentProject.features.length > 0 && (
+                      <div className="w-full mb-5">
+                        <h4 className="text-[11px] sm:text-xs font-extrabold uppercase tracking-[0.16em] text-[#12221b] font-sans mb-2.5">
+                          Key Features
+                        </h4>
+                        <ul className="space-y-2">
+                          {currentProject.features.map((feat, i) => (
+                            <li
+                              key={i}
+                              className="flex items-start gap-2.5 text-xs sm:text-[13px] text-zinc-600 font-sans leading-snug text-justify"
+                            >
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#ea580c] mt-1.5 shrink-0" />
+                              <span>{feat}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     )}
+
+                    {/* Action Buttons: GitHub & Live Project (Hidden if no URL exists) */}
+                    {(Boolean(currentProject.githubUrl) ||
+                      Boolean(currentProject.liveUrl)) && (
+                        <div className="flex items-center gap-3 pt-1 flex-wrap">
+                          {currentProject.githubUrl && (
+                            <a
+                              href={currentProject.githubUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 shadow-sm hover:shadow transition-all"
+                            >
+                              <GithubIcon className="w-4 h-4" />
+                              <span>GitHub</span>
+                            </a>
+                          )}
+                          {currentProject.liveUrl && (
+                            <a
+                              href={currentProject.liveUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-[#ff6a00] to-[#ea580c] shadow-[0_4px_14px_rgba(234,88,12,0.25)] hover:shadow-[0_6px_20px_rgba(234,88,12,0.35)] transition-all"
+                            >
+                              <span>Live Project</span>
+                              <ExternalLink className="w-4 h-4" />
+                            </a>
+                          )}
+                        </div>
+                      )}
+                  </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
-        </div>
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </section>

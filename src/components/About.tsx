@@ -71,7 +71,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative w-full min-h-screen bg-[#fafaf9] flex flex-col justify-center pt-24 pb-16 sm:pt-28 sm:pb-20 lg:pt-32 lg:pb-24 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 overflow-hidden scroll-mt-20"
+      className="relative w-full min-h-[calc(100vh-72px)] bg-[#fafaf9] flex flex-col justify-center py-12 sm:py-16 lg:py-0 px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20 overflow-hidden scroll-mt-[72px]"
     >
       {/* Background subtle radial gradient */}
       <div className="absolute inset-0 pointer-events-none select-none bg-[radial-gradient(circle_at_top_right,rgba(255,237,213,0.35),transparent_55%)]" />
@@ -238,8 +238,7 @@ export default function About() {
             </motion.p>
 
             {/* 4. CTA appears after the description */}
-            <motion.a
-              href="#contact"
+            <motion.div
               initial={
                 shouldReduceMotion
                   ? { opacity: 0 }
@@ -252,13 +251,19 @@ export default function About() {
                 delay: shouldReduceMotion ? 0 : 0.44,
                 ease: LUXURY_EASE,
               }}
-              whileHover={shouldReduceMotion ? undefined : { y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center justify-center px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-[#ff6a00] to-[#ea580c] shadow-md shadow-orange-500/25 hover:shadow-xl hover:shadow-orange-500/35 transition-[box-shadow] duration-200 group font-sans text-center"
+              className="inline-block"
             >
-              <span>More About Me</span>
-              <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1" />
-            </motion.a>
+              <motion.a
+                href="#contact"
+                whileHover={shouldReduceMotion ? undefined : { scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="inline-flex items-center justify-center px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-[#ff6a00] to-[#ea580c] border border-orange-400/40 hover:border-orange-300/60 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_6px_18px_rgba(234,88,12,0.22)] hover:shadow-[0_3px_6px_rgba(0,0,0,0.05),0_12px_24px_rgba(234,88,12,0.30)] transition-all duration-300 ease-out group font-sans text-center cursor-pointer"
+              >
+                <span>More About Me</span>
+                <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1" />
+              </motion.a>
+            </motion.div>
           </div>
 
           {/* Right Column: 4 Rounded Glass Cards appearing sequentially with subtle stagger */}

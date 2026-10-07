@@ -154,10 +154,10 @@ export default function Experience() {
 
           {/* RIGHT COLUMN: Editorial Timeline */}
           <div className="lg:col-span-8 xl:col-span-8.5 w-full">
-            <div className="relative pl-6 sm:pl-8 md:pl-10">
-              {/* Very Thin Vertical Timeline Connector Line */}
+            <div className="relative">
+              {/* Very Thin Vertical Timeline Connector Line running down through center of all markers */}
               <div
-                className="absolute left-2 sm:left-3 top-4 bottom-4 w-[1.5px] bg-gradient-to-b from-[#ea580c] via-zinc-200 to-zinc-200/40 pointer-events-none"
+                className="absolute left-[10px] sm:left-[12px] top-6 bottom-6 w-[2px] -translate-x-1/2 bg-gradient-to-b from-[#ea580c] via-zinc-200 to-zinc-200/40 pointer-events-none"
                 aria-hidden="true"
               />
 
@@ -183,24 +183,26 @@ export default function Experience() {
                           "--mobile-z": `${mobileZIndex}`,
                         } as React.CSSProperties
                       }
-                      className="sticky sm:relative top-[var(--mobile-top)] sm:top-auto z-[var(--mobile-z)] sm:z-auto group transition-[top,box-shadow] duration-300"
+                      className="sticky sm:relative top-[var(--mobile-top)] sm:top-auto z-[var(--mobile-z)] sm:z-auto group flex items-start gap-3 sm:gap-4 md:gap-5 transition-[top,box-shadow] duration-300"
                     >
-                      {/* Circular Timeline Indicator Marker */}
-                      <div
-                        className={`absolute -left-6 sm:-left-8 md:-left-10 top-6 -translate-x-1/2 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-white flex items-center justify-center z-10 transition-transform duration-300 group-hover:scale-110 ${exp.isCurrentOrRecent
-                          ? "border-2 border-[#ea580c] shadow-[0_0_0_3px_rgba(234,88,12,0.20)]"
-                          : "border-2 border-[#163327] shadow-[0_0_0_3px_rgba(22,51,39,0.12)]"
-                          }`}
-                        aria-hidden="true"
-                      >
-                        <span
-                          className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${exp.isCurrentOrRecent ? "bg-[#ea580c]" : "bg-[#163327]"
+                      {/* Circular Timeline Indicator Marker - Centered directly on the line */}
+                      <div className="w-5 sm:w-6 shrink-0 flex items-center justify-center pt-6">
+                        <div
+                          className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-white flex items-center justify-center z-10 transition-transform duration-300 group-hover:scale-110 ${exp.isCurrentOrRecent
+                            ? "border-2 border-[#ea580c] shadow-[0_0_0_3px_rgba(234,88,12,0.20)]"
+                            : "border-2 border-[#163327] shadow-[0_0_0_3px_rgba(22,51,39,0.12)]"
                             }`}
-                        />
+                          aria-hidden="true"
+                        >
+                          <span
+                            className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${exp.isCurrentOrRecent ? "bg-[#ea580c]" : "bg-[#163327]"
+                              }`}
+                          />
+                        </div>
                       </div>
 
                       {/* Editorial Experience Card Panel */}
-                      <div className="relative rounded-[22px] sm:rounded-[26px] bg-white border border-zinc-200/90 sm:border-zinc-200/80 hover:border-zinc-300 p-5 sm:p-7 md:p-8 shadow-[0_-3px_18px_rgba(0,0,0,0.06),0_8px_24px_rgba(0,0,0,0.06)] sm:shadow-[0_1px_3px_rgba(0,0,0,0.03),0_8px_24px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.04),0_18px_40px_rgba(0,0,0,0.07)] hover:-translate-y-0.5 transition-all duration-300 ease-out">
+                      <div className="flex-1 min-w-0 relative rounded-[22px] sm:rounded-[26px] bg-white border border-zinc-200/90 sm:border-zinc-200/80 hover:border-zinc-300 p-5 sm:p-7 md:p-8 shadow-[0_-3px_18px_rgba(0,0,0,0.06),0_8px_24px_rgba(0,0,0,0.06)] sm:shadow-[0_1px_3px_rgba(0,0,0,0.03),0_8px_24px_rgba(0,0,0,0.04)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.04),0_18px_40px_rgba(0,0,0,0.07)] hover:-translate-y-0.5 transition-all duration-300 ease-out">
                         {/* Card Header: Metadata Row */}
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-4 mb-3 sm:mb-4">
                           <div className="flex items-center gap-2 flex-wrap">

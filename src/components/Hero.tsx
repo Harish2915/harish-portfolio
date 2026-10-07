@@ -143,11 +143,10 @@ export default function Hero() {
           I build modern web, mobile and AI solutions that solve real-world problems.
         </motion.p>
 
-        {/* 5. CTA Buttons - Sequential reveal with subtle scale (0.98 -> 1) & smooth hover */}
+        {/* 5. CTA Buttons - Sequential reveal with subtle scale (0.98 -> 1) & smooth instant hover */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-4 w-full sm:w-auto mb-2.5 sm:mb-5">
           {/* Primary: View My Work */}
-          <motion.a
-            href="#projects"
+          <motion.div
             initial={
               shouldReduceMotion
                 ? { opacity: 0 }
@@ -159,19 +158,22 @@ export default function Hero() {
               delay: shouldReduceMotion ? 0 : 0.64,
               ease: LUXURY_EASE,
             }}
-            whileHover={shouldReduceMotion ? undefined : { y: -2 }}
-            whileTap={{ scale: 0.98 }}
-            className="w-full sm:w-auto inline-flex items-center justify-center px-5 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-[#ff6a00] to-[#ea580c] shadow-md shadow-orange-500/25 hover:shadow-xl hover:shadow-orange-500/35 transition-all duration-200 group font-sans text-center"
+            className="w-full sm:w-auto"
           >
-            <span>View My Work</span>
-            <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1" />
-          </motion.a>
+            <motion.a
+              href="#projects"
+              whileHover={shouldReduceMotion ? undefined : { scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="w-full sm:w-auto inline-flex items-center justify-center px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-[#ff6a00] to-[#ea580c] border border-orange-400/40 hover:border-orange-300/60 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_6px_18px_rgba(234,88,12,0.22)] hover:shadow-[0_3px_6px_rgba(0,0,0,0.05),0_12px_24px_rgba(234,88,12,0.30)] transition-all duration-300 ease-out group font-sans text-center cursor-pointer"
+            >
+              <span>View My Work</span>
+              <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1" />
+            </motion.a>
+          </motion.div>
 
           {/* Secondary: Download Resume */}
-          <motion.a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+          <motion.div
             initial={
               shouldReduceMotion
                 ? { opacity: 0 }
@@ -183,13 +185,21 @@ export default function Hero() {
               delay: shouldReduceMotion ? 0 : 0.72,
               ease: LUXURY_EASE,
             }}
-            whileHover={shouldReduceMotion ? undefined : { y: -2 }}
-            whileTap={{ scale: 0.98 }}
-            className="w-full sm:w-auto glass-pill inline-flex items-center justify-center px-5 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold text-[#163327] hover:bg-white transition-all duration-200 shadow-sm hover:shadow-md border border-zinc-200/90 group font-sans text-center"
+            className="w-full sm:w-auto"
           >
-            <span>Download Resume</span>
-            <Download className="w-4 h-4 ml-2.5 transition-transform duration-200 group-hover:translate-y-0.5 text-[#163327]" />
-          </motion.a>
+            <motion.a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={shouldReduceMotion ? undefined : { y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="w-full sm:w-auto glass-pill inline-flex items-center justify-center px-5 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold text-[#163327] hover:bg-white transition-all duration-200 shadow-sm hover:shadow-md border border-zinc-200/90 group font-sans text-center"
+            >
+              <span>Download Resume</span>
+              <Download className="w-4 h-4 ml-2.5 transition-transform duration-200 group-hover:translate-y-0.5 text-[#163327]" />
+            </motion.a>
+          </motion.div>
         </div>
 
         {/* 6. Statistics card - Fade in + tiny stagger for each stat */}
