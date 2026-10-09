@@ -73,7 +73,7 @@ export default function Home() {
         </div>
 
         {/* Foreground content sitting cleanly on z-10 */}
-        <div className="relative z-10 flex flex-col w-full h-full justify-between flex-1 overflow-hidden pt-16 sm:pt-20">
+        <div className="relative z-10 flex flex-col w-full h-full justify-between flex-1 overflow-hidden pt-13 min-[360px]:pt-14 sm:pt-20">
           <Hero />
         </div>
       </div>

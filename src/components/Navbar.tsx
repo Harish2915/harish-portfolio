@@ -376,7 +376,7 @@ export default function Navbar() {
         duration: shouldReduceMotion ? 0.2 : 0.5,
         ease: LUXURY_EASE,
       }}
-      className={`fixed top-0 left-0 right-0 z-50 py-3.5 sm:py-4 transition-[background-color,border-color,backdrop-filter,box-shadow] duration-200 ${scrolled || activeItem !== "Home"
+      className={`fixed top-0 left-0 right-0 z-50 py-2.5 min-[360px]:py-3 sm:py-4 transition-[background-color,border-color,backdrop-filter,box-shadow] duration-200 ${scrolled || activeItem !== "Home"
         ? "bg-white/95 backdrop-blur-md shadow-[0_1px_3px_rgba(0,0,0,0.03),0_8px_20px_rgba(0,0,0,0.02)] border-b border-zinc-200/75"
         : "bg-transparent"
         }`}
