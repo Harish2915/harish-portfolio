@@ -9,6 +9,7 @@ import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 import Education from "@/components/Education";
 import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 import { motion, useReducedMotion } from "framer-motion";
 
 const LUXURY_EASE = [0.22, 1, 0.36, 1] as const;
@@ -95,6 +96,9 @@ export default function Home() {
 
       {/* Contact Screen */}
       <Contact />
+
+      {/* Footer */}
+      <Footer />
     </main>
   );
 }

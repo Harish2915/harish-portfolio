@@ -427,30 +427,6 @@ export default function Contact() {
             </motion.div>
           </div>
         </div>
-
-        {/* Editorial Closing Bar & Back to Top */}
-        <div className="mt-16 sm:mt-20 lg:mt-24 pt-8 border-t border-zinc-200/80 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2 select-none">
-            <span className="text-2xl font-extrabold tracking-tight text-zinc-950 font-sans">
-              H
-            </span>
-            <span className="text-2xl font-black text-[#ea580c] leading-none">
-              .
-            </span>
-            <span className="text-xs sm:text-sm text-zinc-500 font-sans ml-2">
-              © {new Date().getFullYear()} Harish. Crafted with passion & precision.
-            </span>
-          </div>
-
-          <button
-            type="button"
-            onClick={handleScrollToTop}
-            className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-zinc-600 hover:text-[#ea580c] transition-colors duration-200 font-sans cursor-pointer group"
-          >
-            <span>Back to top</span>
-            <ChevronUp className="w-4 h-4 transition-transform duration-200 group-hover:-translate-y-0.5" />
-          </button>
-        </div>
       </div>
     </section>
   );

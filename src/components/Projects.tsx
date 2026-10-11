@@ -81,7 +81,8 @@ const PROJECTS: ProjectItem[] = [
       "/projects/selavu4.png"
     ],
 
-    duration: "2026"
+    duration: "2026",
+    githubUrl: "https://github.com/Harish2915/selavu.git"
   },
   {
     id: "anvesha",
@@ -122,7 +123,7 @@ const PROJECTS: ProjectItem[] = [
 
     duration: "2026",
 
-    // githubUrl: "https://github.com/...",
+    githubUrl: "https://github.com/Harish2915/anvesha.git",
     // liveUrl: "https://...",
   },
   {
@@ -166,7 +167,7 @@ const PROJECTS: ProjectItem[] = [
 
     duration: "2026",
 
-    // githubUrl: "https://github.com/...",
+    githubUrl: "https://github.com/Harish2915/kadhambari.git",
     // liveUrl: "https://...",
   },
   {
@@ -255,11 +256,11 @@ const RIGHT_ARC_NODES = [
 ];
 
 const SMALL_CIRCLE_SIZES = [
-  "w-11 h-11 sm:w-12 sm:h-12 md:w-13 md:h-13 lg:w-14 lg:h-14",
-  "w-11 h-11 sm:w-12 sm:h-12 md:w-13 md:h-13 lg:w-14 lg:h-14",
-  "w-11 h-11 sm:w-12 sm:h-12 md:w-13 md:h-13 lg:w-14 lg:h-14",
-  "w-11 h-11 sm:w-12 sm:h-12 md:w-13 md:h-13 lg:w-14 lg:h-14",
-  "w-11 h-11 sm:w-12 sm:h-12 md:w-13 md:h-13 lg:w-14 lg:h-14",
+  "w-[38px] h-[38px] sm:w-[42px] sm:h-[42px] md:w-[45px] md:h-[45px] lg:w-[48px] lg:h-[48px]", // Circle 1 (Top-Right) - base size
+  "w-[42px] h-[42px] sm:w-[46px] sm:h-[46px] md:w-[49px] md:h-[49px] lg:w-[53px] lg:h-[53px]", // Circle 2 (Upper-Right) - slightly bigger
+  "w-[46px] h-[46px] sm:w-[50px] sm:h-[50px] md:w-[54px] md:h-[54px] lg:w-[58px] lg:h-[58px]", // Circle 3 (Center-Right) - slightly bigger
+  "w-[50px] h-[50px] sm:w-[54px] sm:h-[54px] md:w-[59px] md:h-[59px] lg:w-[63px] lg:h-[63px]", // Circle 4 (Lower-Right) - slightly bigger
+  "w-[54px] h-[54px] sm:w-[58px] sm:h-[58px] md:w-[64px] md:h-[64px] lg:w-[68px] lg:h-[68px]", // Circle 5 (Bottom-Right) - largest
 ];
 
 export default function Projects() {
