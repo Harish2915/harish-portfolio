@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
+import logo1 from "../../public/logo/logo1.png";
 import { ArrowUp } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { navigateToSection } from "@/utils/navigation";
@@ -163,26 +165,26 @@ export default function Footer() {
 
       <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center">
 
-        {/* 1. CENTERED LOGO: "H." */}
+        {/* 1. CENTERED LOGO: logo1.png */}
         <motion.div
           initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.45, ease: LUXURY_EASE }}
-          className="flex items-center justify-center mb-2 sm:mb-2.5"
+          className="flex items-center justify-center mb-2.5 sm:mb-3"
         >
           <button
             type="button"
             onClick={handleScrollToTop}
-            className="flex items-baseline justify-center cursor-pointer select-none group transition-transform duration-300 hover:scale-105"
+            className="flex items-center justify-center cursor-pointer select-none group transition-transform duration-300 hover:scale-105"
             aria-label="Back to top"
           >
-            <span className="text-4xl sm:text-5xl md:text-[50px] font-black tracking-tight text-[#12221b] font-sans leading-none">
-              H
-            </span>
-            <span className="text-4xl sm:text-5xl md:text-[50px] font-black text-[#ea580c] leading-none ml-0.5 transition-transform duration-300 group-hover:scale-125">
-              .
-            </span>
+            <Image
+              src={logo1}
+              alt="Harish Logo"
+              className="h-10 sm:h-12 md:h-14 w-auto object-contain"
+              priority
+            />
           </button>
         </motion.div>
 

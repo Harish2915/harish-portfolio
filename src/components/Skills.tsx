@@ -255,20 +255,10 @@ export default function Skills() {
   const [activeCategory, setActiveCategory] = useState<CategoryId>("all");
   const [activeIndex, setActiveIndex] = useState(4); // Default to Flutter
   const [isHovered, setIsHovered] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const lastWheelTime = useRef<number>(0);
   const touchStartX = useRef<number | null>(null);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 640);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
 
   const filteredSkills = useMemo(() => {
     if (activeCategory === "all") return SKILLS_LIST;
@@ -318,22 +308,41 @@ export default function Skills() {
     return () => clearInterval(interval);
   }, [isHovered, shouldReduceMotion, totalSkills, handleNext]);
 
-  // 2. MANUAL WHEEL SCROLL: Intercepts wheel over the entire skills section so it cycles cards without jumping to next screen
+  // 2. MANUAL WHEEL SCROLL: Handles horizontal scrolling smoothly without hijacking natural vertical page scrolling
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
 
     const handleWheel = (e: WheelEvent) => {
-      const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-      if (Math.abs(delta) < 15) return;
+      // Allow category filter bar to scroll horizontally on its own
+      const target = e.target as HTMLElement | null;
+      if (target?.closest?.("[data-category-bar]")) {
+        return;
+      }
 
+      const absX = Math.abs(e.deltaX);
+      const absY = Math.abs(e.deltaY);
+
+      // Distinguish horizontal gesture (trackpad swipe, tilt wheel, Shift+wheel) from vertical scroll
+      const isHorizontal = absX > absY || (e.shiftKey && absY > 0);
+
+      // If user is scrolling vertically, NEVER hijack or prevent default:
+      // let natural vertical page scrolling work completely unhindered
+      if (!isHorizontal) {
+        return;
+      }
+
+      // User is scrolling horizontally: prevent default so the page doesn't scroll vertically or bounce
       e.preventDefault();
 
+      const hDelta = e.shiftKey && absX === 0 ? e.deltaY : e.deltaX;
+      if (Math.abs(hDelta) < 12) return;
+
       const now = Date.now();
-      if (now - lastWheelTime.current < 220) return;
+      if (now - lastWheelTime.current < 180) return;
       lastWheelTime.current = now;
 
-      if (delta > 0) {
+      if (hDelta > 0) {
         handleNext();
       } else {
         handlePrev();
@@ -366,13 +375,32 @@ export default function Skills() {
     setIsHovered(false);
   };
 
-  // 4. KEYBOARD NAVIGATION
+  // 4. KEYBOARD NAVIGATION: Only active when Skills section is in viewport
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") {
-        handlePrev();
-      } else if (e.key === "ArrowRight") {
-        handleNext();
+      const activeEl = document.activeElement;
+      if (
+        activeEl &&
+        (activeEl.tagName === "INPUT" ||
+          activeEl.tagName === "TEXTAREA" ||
+          activeEl.getAttribute("contenteditable") === "true")
+      ) {
+        return;
+      }
+
+      if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+        const section = sectionRef.current;
+        if (!section) return;
+        const rect = section.getBoundingClientRect();
+        const isInView = rect.top < window.innerHeight && rect.bottom > 0;
+        if (!isInView) return;
+
+        e.preventDefault();
+        if (e.key === "ArrowLeft") {
+          handlePrev();
+        } else {
+          handleNext();
+        }
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -477,7 +505,7 @@ export default function Skills() {
     <section
       ref={sectionRef}
       id="skills"
-      className="relative w-full bg-[#faf7f2] h-[calc(100dvh-72px)] sm:h-[calc(100vh-72px)] min-h-[460px] max-h-[100dvh] py-2 sm:py-3 px-3 sm:px-8 md:px-12 lg:px-16 overflow-hidden scroll-mt-[72px] font-sans select-none flex flex-col justify-between items-center"
+      className="relative w-full bg-[#faf7f2] h-[calc(100dvh-72px)] sm:h-[calc(100vh-72px)] min-h-[460px] max-h-[100dvh] py-2 sm:py-3 px-3 sm:px-8 md:px-12 lg:px-16 overflow-hidden scroll-mt-[72px] font-sans select-none flex flex-col justify-between items-center touch-pan-y overscroll-x-contain"
     >
       {/* Background Soft Radiant Warm Glow */}
       <div className="absolute inset-0 pointer-events-none select-none bg-[radial-gradient(circle_at_50%_40%,rgba(255,241,230,0.65),transparent_65%)]" />
@@ -534,7 +562,10 @@ export default function Skills() {
           </motion.p>
 
           {/* Category Filter Buttons ("tools, frontend like that") - ALWAYS IN SAME LINE with slightly increased size */}
-          <div className="w-full flex items-center justify-start sm:justify-center flex-nowrap gap-2 sm:gap-2.5 md:gap-3 overflow-x-auto no-scrollbar py-1 px-4 sm:px-1">
+          <div
+            data-category-bar="true"
+            className="w-full flex items-center justify-start sm:justify-center flex-nowrap gap-2 sm:gap-2.5 md:gap-3 overflow-x-auto no-scrollbar py-1 px-4 sm:px-1"
+          >
             {CATEGORIES.map((cat) => {
               const isSelected = activeCategory === cat.id;
               const count = getCategoryCount(cat.id);
@@ -579,6 +610,8 @@ export default function Skills() {
           style={{
             perspective: "1200px",
             transformStyle: "preserve-3d",
+            overscrollBehaviorX: "contain",
+            touchAction: "pan-y",
           }}
         >
           {filteredSkills.map((skill, idx) => {

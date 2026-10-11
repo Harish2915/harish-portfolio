@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import SplashScreen from "@/components/SplashScreen";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
@@ -29,21 +30,28 @@ export default function Home() {
       >
         {/* Background Scenic Photograph spanning full screen behind navbar and hero */}
         <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
-          <motion.img
-            src="/hero_bg.png"
-            alt="Harish workspace overlooking mountain lake at sunrise"
+          <motion.div
             initial={
               shouldReduceMotion
                 ? { opacity: 0 }
-                : { opacity: 0.8, scale: 1.04 }
+                : { opacity: 0, scale: 1.04 }
             }
             animate={{ opacity: 1, scale: 1 }}
             transition={{
               duration: shouldReduceMotion ? 0.3 : 1.4,
               ease: LUXURY_EASE,
             }}
-            className="w-full h-full object-cover object-[78%_center] md:object-[72%_center] lg:object-right"
-          />
+            className="absolute inset-0 w-full h-full"
+          >
+            <Image
+              src="/hero_bg.png"
+              alt="Harish workspace overlooking mountain lake at sunrise"
+              fill
+              priority
+              sizes="100vw"
+              className="w-full h-full object-cover object-[78%_center] md:object-[72%_center] lg:object-right"
+            />
+          </motion.div>
 
           {/* Mobile Gradient Overlay: ensures text on phone view is 100% readable against the photo */}
           <div

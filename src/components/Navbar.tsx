@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+import logo1 from "../../public/logo/logo1.png";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
@@ -393,14 +395,14 @@ export default function Navbar() {
             ease: LUXURY_EASE,
           }}
           onClick={(e) => handleNavClick(e, navItems[0])}
-          className="flex items-baseline group select-none cursor-pointer"
+          className="flex items-center group select-none cursor-pointer"
         >
-          <span className="text-3xl font-extrabold tracking-tight text-zinc-950 font-sans">
-            H
-          </span>
-          <span className="text-3xl font-black text-[#ea580c] leading-none transition-transform duration-300 group-hover:scale-125">
-            .
-          </span>
+          <Image
+            src={logo1}
+            alt="Harish Logo"
+            className="h-8 sm:h-9 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            priority
+          />
         </motion.a>
 
         {/* Desktop Navigation Links - In exact order with icons */}

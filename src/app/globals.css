@@ -120,4 +120,15 @@ body {
   height: 0 !important;
 }
 
+/* Lock scroll and prevent scrollbar during splash screen until intro completes */
+html:not(.intro-skipped),
+html:not(.intro-skipped) body {
+  overflow: hidden !important;
+}
+
+/* Prevent any flash of splash screen on direct navigation if intro was already shown in session */
+html.intro-skipped #splash-screen {
+  display: none !important;
+}
+
 
