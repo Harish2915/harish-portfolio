@@ -193,13 +193,14 @@ export default function Hero() {
             className="w-full sm:w-auto"
           >
             <motion.a
-              href="/resume.pdf"
+              href="/resume/Harish_Resume.pdf"
+              download="Harish_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={shouldReduceMotion ? undefined : { y: -2 }}
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
-              className="w-full sm:w-auto glass-pill inline-flex items-center justify-center px-3.5 min-[360px]:px-4.5 py-1.5 min-[360px]:py-2 min-[400px]:py-2.5 sm:py-3 rounded-full text-[11px] min-[360px]:text-xs min-[400px]:text-[13px] sm:text-sm font-semibold text-[#163327] hover:bg-white transition-all duration-200 shadow-sm hover:shadow-md border border-zinc-200/90 group font-sans text-center"
+              className="w-full sm:w-auto glass-pill inline-flex items-center justify-center px-3.5 min-[360px]:px-4.5 py-1.5 min-[360px]:py-2 min-[400px]:py-2.5 sm:py-3 rounded-full text-[11px] min-[360px]:text-xs min-[400px]:text-[13px] sm:text-sm font-semibold text-[#163327] hover:bg-white transition-all duration-200 shadow-sm hover:shadow-md border border-zinc-200/90 group font-sans text-center cursor-pointer"
             >
               <span>Download Resume</span>
               <Download className="w-3.5 h-3.5 min-[360px]:w-4 min-[360px]:h-4 ml-2 min-[360px]:ml-2.5 transition-transform duration-200 group-hover:translate-y-0.5 text-[#163327]" />

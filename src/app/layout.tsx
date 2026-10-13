@@ -5,6 +5,14 @@ export const metadata: Metadata = {
   title: "Harish | Full Stack Developer",
   description:
     "Full Stack Developer building modern web, mobile and AI solutions that solve real-world problems.",
+  icons: {
+    icon: [
+      { url: "/logo/emblem.png", type: "image/png" },
+      { url: "/favicon.ico" },
+    ],
+    shortcut: "/logo/emblem.png",
+    apple: "/logo/emblem.png",
+  },
 };
 
 export default function RootLayout({
@@ -15,6 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased" suppressHydrationWarning>
       <head>
+        <link rel="icon" href="/logo/emblem.png" type="image/png" />
+        <link rel="shortcut icon" href="/logo/emblem.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/logo/emblem.png" />
         <script
           dangerouslySetInnerHTML={{
             __html: `

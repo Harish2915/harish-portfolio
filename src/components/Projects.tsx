@@ -162,7 +162,6 @@ const PROJECTS: ProjectItem[] = [
     modalImages: [
       "/projects/kadhambari2.png",
       "/projects/kadhambari3.png",
-      "/projects/kadhambari4.png",
     ],
 
     duration: "2026",
@@ -538,19 +537,19 @@ export default function Projects() {
                 </div>
 
                 {/* Primary CTA / "View Project" Button Opens Modal + Stepper Controls */}
-                <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
+                <div className="w-full sm:w-auto flex items-center gap-2.5 sm:gap-4">
                   <motion.button
                     type="button"
                     onClick={() => setIsModalOpen(true)}
                     whileHover={{ scale: 1.02, y: -2 }}
                     whileTap={{ scale: 0.98 }}
-                    className="inline-flex items-center justify-center px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-[#ff6a00] to-[#ea580c] border border-orange-400/40 hover:border-orange-300/60 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_6px_18px_rgba(234,88,12,0.22)] hover:shadow-[0_3px_6px_rgba(0,0,0,0.05),0_12px_24px_rgba(234,88,12,0.30)] transition-all duration-300 ease-out group font-sans cursor-pointer"
+                    className="flex-1 sm:flex-initial inline-flex items-center justify-center px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-[#ff6a00] to-[#ea580c] border border-orange-400/40 hover:border-orange-300/60 shadow-[0_1px_2px_rgba(0,0,0,0.04),0_6px_18px_rgba(234,88,12,0.22)] hover:shadow-[0_3px_6px_rgba(0,0,0,0.05),0_12px_24px_rgba(234,88,12,0.30)] transition-all duration-300 ease-out group font-sans cursor-pointer whitespace-nowrap"
                   >
                     <span>View Project</span>
                     <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-200 group-hover:translate-x-1" />
                   </motion.button>
 
-                  <div className="flex items-center gap-1.5">
+                  <div className="flex items-center gap-1.5 shrink-0">
                     <button
                       type="button"
                       onClick={handlePrev}
@@ -674,6 +673,35 @@ export default function Projects() {
                         </div>
                       </div>
                     )}
+
+                    {/* Action Buttons: GitHub & Live Project (Left Corner) */}
+                    {(Boolean(currentProject.githubUrl) ||
+                      Boolean(currentProject.liveUrl)) && (
+                        <div className="w-full pt-3 flex items-center gap-3 flex-wrap">
+                          {currentProject.githubUrl && (
+                            <a
+                              href={currentProject.githubUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-[#12221b] hover:bg-[#12221b] hover:text-white hover:-translate-y-0.5 hover:scale-[1.02] active:scale-[0.98] shadow-sm hover:shadow-[0_8px_20px_rgba(18,34,27,0.22)] transition-all duration-150 ease-out cursor-pointer group"
+                            >
+                              <GithubIcon className="w-4 h-4 transition-transform duration-150 ease-out group-hover:scale-110" />
+                              <span>GitHub</span>
+                            </a>
+                          )}
+                          {currentProject.liveUrl && (
+                            <a
+                              href={currentProject.liveUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-[#ff6a00] to-[#ea580c] hover:-translate-y-0.5 hover:scale-[1.02] active:scale-[0.98] shadow-[0_4px_14px_rgba(234,88,12,0.25)] hover:shadow-[0_8px_24px_rgba(234,88,12,0.4)] transition-all duration-150 ease-out cursor-pointer group"
+                            >
+                              <span>Live Project</span>
+                              <ExternalLink className="w-4 h-4 transition-transform duration-150 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                            </a>
+                          )}
+                        </div>
+                      )}
                   </div>
 
                   {/* RIGHT COLUMN: Natural Flow Content matching Skills screen */}
@@ -712,7 +740,7 @@ export default function Projects() {
 
                     {/* Key Features */}
                     {currentProject.features && currentProject.features.length > 0 && (
-                      <div className="w-full mb-5">
+                      <div className="w-full">
                         <h4 className="text-[11px] sm:text-xs font-extrabold uppercase tracking-[0.16em] text-[#12221b] font-sans mb-2.5">
                           Key Features
                         </h4>
@@ -729,35 +757,6 @@ export default function Projects() {
                         </ul>
                       </div>
                     )}
-
-                    {/* Action Buttons: GitHub & Live Project (Hidden if no URL exists) */}
-                    {(Boolean(currentProject.githubUrl) ||
-                      Boolean(currentProject.liveUrl)) && (
-                        <div className="flex items-center gap-3 pt-1 flex-wrap">
-                          {currentProject.githubUrl && (
-                            <a
-                              href={currentProject.githubUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-400 shadow-sm hover:shadow transition-all"
-                            >
-                              <GithubIcon className="w-4 h-4" />
-                              <span>GitHub</span>
-                            </a>
-                          )}
-                          {currentProject.liveUrl && (
-                            <a
-                              href={currentProject.liveUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold text-white bg-gradient-to-r from-[#ff6a00] to-[#ea580c] shadow-[0_4px_14px_rgba(234,88,12,0.25)] hover:shadow-[0_6px_20px_rgba(234,88,12,0.35)] transition-all"
-                            >
-                              <span>Live Project</span>
-                              <ExternalLink className="w-4 h-4" />
-                            </a>
-                          )}
-                        </div>
-                      )}
                   </div>
                 </div>
               </div>
