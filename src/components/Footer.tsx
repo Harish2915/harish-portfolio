@@ -38,6 +38,14 @@ function MailFilledIcon({ className = "w-4 h-4" }: { className?: string }) {
   );
 }
 
+function PhoneIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z" />
+    </svg>
+  );
+}
+
 function TwitterBirdIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor">
@@ -105,35 +113,30 @@ const NAV_LINKS = [
 const SOCIAL_LINKS = [
   {
     name: "GitHub",
-    href: "https://github.com",
+    href: "https://github.com/Harish2915",
     icon: GithubIcon,
     ariaLabel: "GitHub profile",
   },
   {
     name: "LinkedIn",
-    href: "https://linkedin.com",
+    href: "https://www.linkedin.com/in/harish2913",
     icon: LinkedinIcon,
     ariaLabel: "LinkedIn profile",
   },
   {
     name: "Email",
-    href: "mailto:harish.developer.contact@gmail.com",
+    href: "mailto:harish29012004@gmail.com",
     icon: MailFilledIcon,
     ariaLabel: "Send Email",
   },
   {
-    name: "Twitter / X",
-    href: "https://twitter.com",
-    icon: TwitterBirdIcon,
-    ariaLabel: "Twitter profile",
-  },
-  {
-    name: "Instagram",
-    href: "https://instagram.com",
-    icon: InstagramIcon,
-    ariaLabel: "Instagram profile",
+    name: "Phone",
+    href: "tel:+918148690290",
+    icon: PhoneIcon,
+    ariaLabel: "Call +91 8148690290",
   },
 ];
+
 
 export default function Footer() {
   const shouldReduceMotion = useReducedMotion();

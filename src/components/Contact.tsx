@@ -44,10 +44,10 @@ export default function Contact() {
   const [errorMessage, setErrorMessage] = useState("");
   const [copiedEmail, setCopiedEmail] = useState(false);
 
-  const contactEmail = "harish@example.com"; // Professional display fallback
+  const contactEmail = "harish29012004@gmail.com";
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText("harish.developer.contact@gmail.com");
+    navigator.clipboard.writeText("harish29012004@gmail.com");
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2000);
   };
